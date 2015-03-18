@@ -51,7 +51,7 @@ class DatabasesManagerLoop extends BaseLoop implements ArraySearchLoopInterface
                 ->set('HOST', $databaseConfig['host'])
                 ->set('USER', $databaseConfig['user'])
                 ->set('PASS', $databaseConfig['pass'])
-                ->set('DATABASE', $databaseConfig['database'])
+                ->set('DB_NAME', $databaseConfig['db_name'])
             ;
 
             $loopResult->addRow($loopResultRow);

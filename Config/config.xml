@@ -4,6 +4,10 @@
         <loop class="DatabasesManager\Loop\DatabasesManagerLoop" name="databases.manager.loop" />
     </loops>
 
+    <forms>
+        <form name="databases.manager.form" class="DatabasesManager\Form\DatabaseConfigurationForm" />
+    </forms>
+
     <services>
         <service id="databases.manager.config.handler" class="DatabasesManager\Handler\ConfigurationHandler" />
     </services>

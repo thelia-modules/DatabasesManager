@@ -1,37 +1,37 @@
 <div class="general-block-decorator">
     <div class="row">
-        <div class="col-md-12 title title-without-tabs clearfix">
-            {intl l='VIEW_TITLE' d='databasesmanager.ai'}
+        <div class="col-xs-12 title title-without-tabs clearfix">
+            {intl l="VIEW_TITLE" d="databasesmanager.ai"}
             {loop type="auth" name="auth-edit" role="ADMIN" resource="admin.module" module="databasesmanager" access="CREATE"}
                 <div class="pull-right">
-                    <span class="btn btn-primary" title="{intl l='ADD_BUTTON' d='databasesmanager.ai'}"><i class="glyphicon glyphicon-plus"></i></span>
+                    <a class="btn btn-primary" href="#add-database-config-dialog" title="{intl l="ADD_BUTTON" d="databasesmanager.ai"}" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a>
                 </div>
             {/loop}
         </div>
     </div>
 
     <div class="row">
-        <div class="col-md-12 table-responsive">
+        <div class="col-xs-12 table-responsive">
             <table class="table table-hover">
                 <thead>
                     <tr>
                         <th>
-                            {intl l='TABLE_HEAD_LABEL' d='databasesmanager.ai'}
+                            {intl l="TABLE_HEAD_LABEL" d="databasesmanager.ai"}
                         </th>
                         <th>
-                            {intl l='TABLE_HEAD_HOST' d='databasesmanager.ai'}
+                            {intl l="TABLE_HEAD_HOST" d="databasesmanager.ai"}
                         </th>
                         <th>
-                            {intl l='TABLE_HEAD_USER' d='databasesmanager.ai'}
+                            {intl l="TABLE_HEAD_USER" d="databasesmanager.ai"}
                         </th>
                         <th>
-                            {intl l='TABLE_HEAD_PASS' d='databasesmanager.ai'}
+                            {intl l="TABLE_HEAD_PASS" d="databasesmanager.ai"}
                         </th>
                         <th>
-                            {intl l='TABLE_HEAD_DATABASE' d='databasesmanager.ai'}
+                            {intl l="TABLE_HEAD_DB_NAME" d="databasesmanager.ai"}
                         </th>
                         <th>
-                            {intl l='TABLE_HEAD_ACTION' d='databasesmanager.ai'}
+                            {intl l="TABLE_HEAD_ACTION" d="databasesmanager.ai"}
                         </th>
                     </tr>
                 </thead>
@@ -51,22 +51,22 @@
                                 {$PASS}
                             </td>
                             <td>
-                                {$DATABASE}
+                                {$DB_NAME}
                             </td>
                             <td>
                                 <div class="btn-group btn-group-xs">
                                     {loop type="auth" name="auth-edit" role="ADMIN" resource="admin.module" module="databasesmanager" access="UPDATE"}
-                                        <span class="btn btn-default" title="{intl l='ACTION_EDIT' d='databasesmanager.ai'}"><i class="glyphicon glyphicon-edit"></i></span>
+                                        <span class="btn btn-default" title="{intl l="ACTION_EDIT" d="databasesmanager.ai"}"><span class="glyphicon glyphicon-edit"></span></span>
                                     {/loop}
                                     {elseloop rel="auth-edit"}
-                                        <span class="btn btn-default disabled" title="{intl l='ACTION_EDIT' d='databasesmanager.ai'}"><i class="glyphicon glyphicon-edit"></i></span>
+                                        <span class="btn btn-default disabled" title="{intl l="ACTION_EDIT" d="databasesmanager.ai"}"><span class="glyphicon glyphicon-edit"></span></span>
                                     {/elseloop}
 
                                     {loop type="auth" name="auth-delete" role="ADMIN" resource="admin.module" module="databasesmanager" access="DELETE"}
-                                        <span class="btn btn-default" title="{intl l='ACTION_DELETE' d='databasesmanager.ai'}"><i class="glyphicon glyphicon-trash"></i></span>
+                                        <span class="btn btn-default" title="{intl l="ACTION_DELETE" d="databasesmanager.ai"}"><span class="glyphicon glyphicon-trash"></span></span>
                                     {/loop}
                                     {elseloop rel="auth-delete"}
-                                        <span class="btn btn-default disabled" title="{intl l='ACTION_DELETE' d='databasesmanager.ai'}"><i class="glyphicon glyphicon-trash"></i></span>
+                                        <span class="btn btn-default disabled" title="{intl l="ACTION_DELETE" d="databasesmanager.ai"}"><span class="glyphicon glyphicon-trash"></span></span>
                                     {/elseloop}
                                 </div>
                             </td>
@@ -76,4 +76,100 @@
             </table>
         </div>
     </div>
+
+    {loop type="auth" name="auth-edit" role="ADMIN" resource="admin.module" module="databasesmanager" access="CREATE"}
+        {form name="databases.manager.form"}
+            <div id="add-database-config-dialog" class="modal fade{if $form_error} modal-force-show{/if}">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+                            <h3>
+                                {intl l="MODAL_TITLE_ADD" d="databasesmanager.ai"}
+                            </h3>
+                        </div>
+
+                        <form action="{url path="/admin/module/DatabasesManager/add"}" method="post" {form_enctype form=$form}>
+                            <div class="modal-body">
+
+                                {if $form_error_message}
+                                    <div class="alert alert-danger">
+                                        {$form_error_message}
+                                    </div>
+                                {/if}
+
+                                {form_hidden_fields form=$form}
+
+                                {form_field form=$form field="label"}
+                                    <div class="form-group{if $error} has-error{/if}">
+                                        <label class="control-label danger" for="{$label_attr.for}">{intl l=$label d="databasesmanager.ai"}</label>
+                                        <input id="{$label_attr.for}" class="form-control" type="text" name="{$name}" value="{$value}" {$attr}>
+                                        {if $error}
+                                            <div class="text-danger">
+                                                {$message}
+                                            </div>
+                                        {/if}
+                                    </div>
+                                {/form_field}
+
+                                {form_field form=$form field="host"}
+                                    <div class="form-group{if $error} has-error{/if}">
+                                        <label class="control-label" for="{$label_attr.for}">{intl l=$label d="databasesmanager.ai"}</label>
+                                        <input id="{$label_attr.for}" class="form-control" type="text" name="{$name}" value="{$value}" {$attr}>
+                                        {if $error}
+                                            <div class="text-danger">
+                                                {$message}
+                                            </div>
+                                        {/if}
+                                    </div>
+                                {/form_field}
+
+                                {form_field form=$form field="user"}
+                                    <div class="form-group{if $error} has-error{/if}">
+                                        <label class="control-label" for="{$label_attr.for}">{intl l=$label d="databasesmanager.ai"}</label>
+                                        <input id="{$label_attr.for}" class="form-control" type="text" name="{$name}" value="{$value}" {$attr}>
+                                        {if $error}
+                                            <div class="text-danger">
+                                                {$message}
+                                            </div>
+                                        {/if}
+                                    </div>
+                                {/form_field}
+
+                                {form_field form=$form field="pass"}
+                                    <div class="form-group{if $error} has-error{/if}">
+                                        <label class="control-label" for="{$label_attr.for}">{intl l=$label d="databasesmanager.ai"}</label>
+                                        <input id="{$label_attr.for}" class="form-control" type="text" name="{$name}" value="{$value}" {$attr}>
+                                        {if $error}
+                                            <div class="text-danger">
+                                                {$message}
+                                            </div>
+                                        {/if}
+                                    </div>
+                                {/form_field}
+
+                                {form_field form=$form field="db_name"}
+                                    <div class="form-group{if $error} has-error{/if}">
+                                        <label class="control-label" for="{$label_attr.for}">{intl l=$label d="databasesmanager.ai"}</label>
+                                        <input id="{$label_attr.for}" class="form-control" type="text" name="{$name}" value="{$value}" {$attr}>
+                                        {if $error}
+                                            <div class="text-danger">
+                                                {$message}
+                                            </div>
+                                        {/if}
+                                    </div>
+                                {/form_field}
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> {intl l="Cancel"}</button>
+                                <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-check"></span> {intl l="Save"}</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        {/form}
+    {/loop}
+
 </div>

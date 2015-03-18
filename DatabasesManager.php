@@ -16,5 +16,8 @@ use Thelia\Module\BaseModule;
 class DatabasesManager extends BaseModule
 {
     /** @var string */
+    const MODULE_CODE = 'DatabasesManager';
+
+    /** @var string */
     const DOMAIN_NAME = 'databasesmanager';
 }
