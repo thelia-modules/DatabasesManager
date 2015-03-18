@@ -1,0 +1,79 @@
+<div class="general-block-decorator">
+    <div class="row">
+        <div class="col-md-12 title title-without-tabs clearfix">
+            {intl l='VIEW_TITLE' d='databasesmanager.ai'}
+            {loop type="auth" name="auth-edit" role="ADMIN" resource="admin.module" module="databasesmanager" access="CREATE"}
+                <div class="pull-right">
+                    <span class="btn btn-primary" title="{intl l='ADD_BUTTON' d='databasesmanager.ai'}"><i class="glyphicon glyphicon-plus"></i></span>
+                </div>
+            {/loop}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            {intl l='TABLE_HEAD_LABEL' d='databasesmanager.ai'}
+                        </th>
+                        <th>
+                            {intl l='TABLE_HEAD_HOST' d='databasesmanager.ai'}
+                        </th>
+                        <th>
+                            {intl l='TABLE_HEAD_USER' d='databasesmanager.ai'}
+                        </th>
+                        <th>
+                            {intl l='TABLE_HEAD_PASS' d='databasesmanager.ai'}
+                        </th>
+                        <th>
+                            {intl l='TABLE_HEAD_DATABASE' d='databasesmanager.ai'}
+                        </th>
+                        <th>
+                            {intl l='TABLE_HEAD_ACTION' d='databasesmanager.ai'}
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {loop type="databases.manager.loop" name="databases.manager.loop"}
+                        <tr>
+                            <td>
+                                {$LABEL}
+                            </td>
+                            <td>
+                                {$HOST}
+                            </td>
+                            <td>
+                                {$USER}
+                            </td>
+                            <td>
+                                {$PASS}
+                            </td>
+                            <td>
+                                {$DATABASE}
+                            </td>
+                            <td>
+                                <div class="btn-group btn-group-xs">
+                                    {loop type="auth" name="auth-edit" role="ADMIN" resource="admin.module" module="databasesmanager" access="UPDATE"}
+                                        <span class="btn btn-default" title="{intl l='ACTION_EDIT' d='databasesmanager.ai'}"><i class="glyphicon glyphicon-edit"></i></span>
+                                    {/loop}
+                                    {elseloop rel="auth-edit"}
+                                        <span class="btn btn-default disabled" title="{intl l='ACTION_EDIT' d='databasesmanager.ai'}"><i class="glyphicon glyphicon-edit"></i></span>
+                                    {/elseloop}
+
+                                    {loop type="auth" name="auth-delete" role="ADMIN" resource="admin.module" module="databasesmanager" access="DELETE"}
+                                        <span class="btn btn-default" title="{intl l='ACTION_DELETE' d='databasesmanager.ai'}"><i class="glyphicon glyphicon-trash"></i></span>
+                                    {/loop}
+                                    {elseloop rel="auth-delete"}
+                                        <span class="btn btn-default disabled" title="{intl l='ACTION_DELETE' d='databasesmanager.ai'}"><i class="glyphicon glyphicon-trash"></i></span>
+                                    {/elseloop}
+                                </div>
+                            </td>
+                        </tr>
+                    {/loop}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

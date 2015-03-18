@@ -1,18 +1,21 @@
-# Databases Manager
+# Thelia 2 Databases Manager
 
 Allows managing multiple connections to databases for other modules and provides commands to parse "schema.xml" files with multiple definitions.
 
 ## Installation
 
-### Manually
+### Manually…
 
-* Copy the module into ```<thelia_root>/local/modules/``` directory and be sure that the name of the module is DatabasesManager.
-* Activate it in your thelia administration panel
+Copy the module into ```<thelia_root>/local/modules/``` directory and be sure that the name of the module is DatabasesManager.
 
-### Composer
+### … or with Composer
 
 Add it in your main thelia composer.json file
 
 ```
 composer require bilhackmac/databases-manager-module:~1.0
 ```
+
+### Then
+
+Activate it in your thelia administration panel

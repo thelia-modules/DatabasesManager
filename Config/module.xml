@@ -3,19 +3,19 @@
     <fullnamespace>DatabasesManager\DatabasesManager</fullnamespace>
     <descriptive locale="en_US">
         <title>Databases manager</title>
-        <subtitle>Because one is not always enough</subtitle>
+        <subtitle>Because only one is not always enough</subtitle>
         <description>Allows managing multiple connections to databases for other modules and provides commands to parse "schema.xml" files with multiple definitions.</description>
     </descriptive>
     <descriptive locale="fr_FR">
         <title>Gestionnaire de base de données</title>
-        <subtitle>Parce qu'une ne suffit pas toujours</subtitle>
+        <subtitle>Parce qu'une seule ne suffit pas toujours</subtitle>
         <description>Permet la gestion de plusieurs connexions à des bases de données pour d'autres modules et fournit des commandes pour analyser les fichiers "schema.xml" avec de multiples définition</description>
     </descriptive>
     <languages>
         <language>en_US</language>
         <language>fr_FR</language>
     </languages>
-    <version>0.1</version>
+    <version>0.5</version>
     <author>
         <name>Jérôme Billiras</name>
         <email>jerome.billiras+github@gmail.com</email>

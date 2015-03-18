@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <config xmlns="http://thelia.net/schema/dic/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://thelia.net/schema/dic/config http://thelia.net/schema/dic/config/thelia-1.0.xsd">
+    <loops>
+        <loop class="DatabasesManager\Loop\DatabasesManagerLoop" name="databases.manager.loop" />
+    </loops>
+
+    <services>
+        <service id="databases.manager.config.handler" class="DatabasesManager\Handler\ConfigurationHandler" />
+    </services>
+
     <commands>
         <command class="DatabasesManager\Command\DatabasesManagerGenerateModelCommand" />
         <command class="DatabasesManager\Command\DatabasesManagerGenerateSqlCommand" />
