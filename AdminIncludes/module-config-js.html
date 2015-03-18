@@ -1,0 +1,21 @@
+<script type="application/javascript">
+    $(function(){
+        var deleteValidButton;
+
+        deleteValidButton = $('#databases-manager-delete-valid');
+
+        $('#databases-manager-config-list').on('click', '[href="#delete-database-config-dialog"]', function(clickEvent){
+            var clickedElement, modalBody;
+
+            clickedElement = $(clickEvent.currentTarget);
+            modalBody = $('#databases-manager-delete-modal-body');
+
+            modalBody.html(modalBody.data('confirm-string').replace('%label', clickedElement.data('key')));
+            deleteValidButton.data('key', clickedElement.data('key'));
+        });
+
+        deleteValidButton.click(function(){
+            window.location.href = deleteValidButton.data('href').replace('%label', deleteValidButton.data('key'));
+        });
+    });
+</script>

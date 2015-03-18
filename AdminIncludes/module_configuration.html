@@ -10,9 +10,21 @@
         </div>
     </div>
 
+    {flash type="databasesmanager.delete.error"}
+        <div class="col-xs-12 alert alert-danger">
+            {$MESSAGE}
+        </div>
+    {/flash}
+
+    {flash type="databasesmanager.delete.success"}
+        <div class="col-xs-12 alert alert-success">
+            {$MESSAGE}
+        </div>
+    {/flash}
+
     <div class="row">
         <div class="col-xs-12 table-responsive">
-            <table class="table table-hover">
+            <table id="databases-manager-config-list" class="table table-hover">
                 <thead>
                     <tr>
                         <th>
@@ -63,7 +75,7 @@
                                     {/elseloop}
 
                                     {loop type="auth" name="auth-delete" role="ADMIN" resource="admin.module" module="databasesmanager" access="DELETE"}
-                                        <span class="btn btn-default" title="{intl l="ACTION_DELETE" d="databasesmanager.ai"}"><span class="glyphicon glyphicon-trash"></span></span>
+                                        <a class="btn btn-default" href="#delete-database-config-dialog" title="{intl l="ACTION_DELETE" d="databasesmanager.ai"}" data-toggle="modal" data-key="{$LABEL}"><span class="glyphicon glyphicon-trash"></span></a>
                                     {/loop}
                                     {elseloop rel="auth-delete"}
                                         <span class="btn btn-default disabled" title="{intl l="ACTION_DELETE" d="databasesmanager.ai"}"><span class="glyphicon glyphicon-trash"></span></span>
@@ -72,6 +84,13 @@
                             </td>
                         </tr>
                     {/loop}
+                    {elseloop rel="databases.manager.loop"}
+                        <tr>
+                            <td class="text-center" colspan="6">
+                                {intl l="NO_CONFIG" d="databasesmanager.ai"}
+                            </td>
+                        </tr>
+                    {/elseloop}
                 </tbody>
             </table>
         </div>
@@ -79,7 +98,7 @@
 
     {loop type="auth" name="auth-edit" role="ADMIN" resource="admin.module" module="databasesmanager" access="CREATE"}
         {form name="databases.manager.form"}
-            <div id="add-database-config-dialog" class="modal fade{if $form_error} modal-force-show{/if}">
+            <div id="add-database-config-dialog" class="modal fade{if $form_error} modal-force-show{/if}" tabindex="-1" role="dialog" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -162,14 +181,37 @@
                             </div>
 
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> {intl l="Cancel"}</button>
-                                <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-check"></span> {intl l="Save"}</button>
+                                <button class="btn btn-default" type="button" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> {intl l="Cancel"}</button>
+                                <button class="btn btn-primary" type="submit"><span class="glyphicon glyphicon-check"></span> {intl l="Save"}</button>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
         {/form}
+    {/loop}
+
+    {loop type="auth" name="auth-delete" role="ADMIN" resource="admin.module" module="databasesmanager" access="DELETE"}
+        <div id="delete-database-config-dialog" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+                        <h3>
+                            {intl l="MODAL_TITLE_DELETE" d="databasesmanager.ai"}
+                        </h3>
+                    </div>
+
+                    <div id="databases-manager-delete-modal-body" class="modal-body" data-confirm-string="{intl l="MODAL_DELETE_CONFIRM" d="databasesmanager.ai"}">
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-default" type="button" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> {intl l="Cancel"}</button>
+                        <button id="databases-manager-delete-valid" class="btn btn-primary" type="button" data-href="{url path="/admin/module/DatabasesManager/delete/%label"}"><span class="glyphicon glyphicon-trash"></span> {intl l="Delete"}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     {/loop}
 
 </div>

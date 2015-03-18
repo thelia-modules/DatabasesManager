@@ -32,12 +32,22 @@ class ConfigurationHandler
         }
     }
 
+    /**
+     * Parse configuration file and return content
+     *
+     * @return array
+     */
     public function parse()
     {
         return (array) Yaml::parse($this->configurationPath);
     }
 
-    public function dump($databasesConfig)
+    /**
+     * Dump databases configuration to file
+     *
+     * @param array $databasesConfig
+     */
+    public function dump(array $databasesConfig)
     {
         $yml = Yaml::dump($databasesConfig);
 
