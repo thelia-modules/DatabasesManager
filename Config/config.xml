@@ -5,7 +5,8 @@
     </loops>
 
     <forms>
-        <form name="databases.manager.form" class="DatabasesManager\Form\DatabaseConfigurationForm" />
+        <form name="databases.manager.form.add" class="DatabasesManager\Form\DatabaseConfigurationAddForm" />
+        <form name="databases.manager.form.edit" class="DatabasesManager\Form\DatabaseConfigurationEditForm" />
     </forms>
 
     <services>

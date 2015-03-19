@@ -46,12 +46,22 @@ class DatabasesManagerLoop extends BaseLoop implements ArraySearchLoopInterface
         foreach ($loopResult->getResultDataCollection() as $label => $databaseConfig) {
             $loopResultRow = new LoopResultRow;
 
+            $flatConfig = [
+                'original_label' => $label,
+                'label' => $label,
+                'host' => $databaseConfig['host'],
+                'user' => $databaseConfig['user'],
+                'pass' => $databaseConfig['pass'],
+                'db_name' => $databaseConfig['db_name'],
+            ];
+
             $loopResultRow
                 ->set('LABEL', $label)
                 ->set('HOST', $databaseConfig['host'])
                 ->set('USER', $databaseConfig['user'])
                 ->set('PASS', $databaseConfig['pass'])
                 ->set('DB_NAME', $databaseConfig['db_name'])
+                ->set('JSON', json_encode($flatConfig))
             ;
 
             $loopResult->addRow($loopResultRow);

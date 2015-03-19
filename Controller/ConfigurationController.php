@@ -34,7 +34,7 @@ class ConfigurationController extends BaseAdminController
         }
 
         /** @var \DatabasesManager\Form\DatabaseConfigurationForm $form */
-        $form = $this->createForm('databases.manager.form');
+        $form = $this->createForm('databases.manager.form.add');
         try {
             $this->validateForm($form);
 
@@ -77,6 +77,92 @@ class ConfigurationController extends BaseAdminController
             } else {
                 $this->setupFormErrorContext(
                     'Databases manager add configuration',
+                    $exception->getMessage(),
+                    $form
+                );
+            }
+
+            $response = $this->render(
+                'module-configure',
+                [
+                    'module_code' => DatabasesManager::MODULE_CODE
+                ]
+            );
+        }
+
+        return $response;
+    }
+
+    /**
+     * Handle databases manager edit config request
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Thelia\Core\HttpFoundation\Response
+     */
+    public function editConfigAction()
+    {
+        $authFail = $this->checkAuth(AdminResources::MODULE, DatabasesManager::DOMAIN_NAME, AccessManager::CREATE);
+        if ($authFail !== null) {
+            return $authFail;
+        }
+
+        /** @var \DatabasesManager\Form\DatabaseConfigurationForm $form */
+        $form = $this->createForm('databases.manager.form.edit');
+        try {
+            $this->validateForm($form);
+
+            /** @var \DatabasesManager\Handler\ConfigurationHandler $configHandler */
+            $configHandler = $this->container->get('databases.manager.config.handler');
+
+            $databasesConfiguration = $configHandler->parse();
+
+            $originalConfigKey = $form->getForm()->get('original_label')->getData();
+            if (!array_key_exists($originalConfigKey, $databasesConfiguration)) {
+                throw new FormValidationException(
+                    $this->getTranslator()->trans(
+                        'CONFIG_DOES_NOT_EXIST',
+                        [
+                            '%label' => $originalConfigKey
+                        ],
+                        DatabasesManager::DOMAIN_NAME . '.ai'
+                    )
+                );
+            }
+            unset($databasesConfiguration[$originalConfigKey]);
+
+            $newConfigKey = $form->getForm()->get('label')->getData();
+            if (array_key_exists($newConfigKey, $databasesConfiguration)) {
+                throw new FormValidationException(
+                    $this->getTranslator()->trans(
+                        'CONFIG_EXISTS',
+                        [
+                            '%label' => $newConfigKey
+                        ],
+                        DatabasesManager::DOMAIN_NAME . '.ai'
+                    )
+                );
+            }
+
+            $databasesConfiguration[$newConfigKey] = [
+                'host' => $form->getForm()->get('host')->getData(),
+                'user' => $form->getForm()->get('user')->getData(),
+                'pass' => $form->getForm()->get('pass')->getData(),
+                'db_name' => $form->getForm()->get('db_name')->getData()
+            ];
+
+            $configHandler->dump($databasesConfiguration);
+
+            $response = $this->getRedirectToModuleConfiguration();
+        } catch (FormValidationException $exception) {
+            if (!$form->getForm()->isValid()) {
+                $this->setupFormErrorContext(
+                    'Databases manager edit configuration',
+                    $this->createStandardFormValidationErrorMessage($exception),
+                    $form
+                );
+                $form->setErrorMessage(null);
+            } else {
+                $this->setupFormErrorContext(
+                    'Databases manager edit configuration',
                     $exception->getMessage(),
                     $form
                 );
@@ -140,7 +226,7 @@ class ConfigurationController extends BaseAdminController
             );
         }
 
-        return $this->getRedirectToModuleConfiguration();;
+        return $this->getRedirectToModuleConfiguration();
     }
 
     /**

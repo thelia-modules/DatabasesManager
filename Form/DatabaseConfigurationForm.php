@@ -26,7 +26,7 @@ class DatabaseConfigurationForm extends BaseForm
      */
     public function getName()
     {
-        return self::NAME;
+        return static::NAME;
     }
 
     /**

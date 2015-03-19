@@ -1,10 +1,11 @@
 <script type="application/javascript">
     $(function(){
-        var deleteValidButton;
+        var databasesManagerConfigList, deleteValidButton;
 
+        databasesManagerConfigList = $('#databases-manager-config-list');
         deleteValidButton = $('#databases-manager-delete-valid');
 
-        $('#databases-manager-config-list').on('click', '[href="#delete-database-config-dialog"]', function(clickEvent){
+        databasesManagerConfigList.on('click', '[href="#delete-database-config-dialog"]', function(clickEvent){
             var clickedElement, modalBody;
 
             clickedElement = $(clickEvent.currentTarget);
@@ -16,6 +17,24 @@
 
         deleteValidButton.click(function(){
             window.location.href = deleteValidButton.data('href').replace('%label', deleteValidButton.data('key'));
+        });
+
+        databasesManagerConfigList.on('click', '[href="#edit-database-config-dialog"]', function(clickEvent){
+            var clickedElement, configData;
+
+            clickedElement = $(clickEvent.currentTarget);
+            configData = clickedElement.data('data');
+
+            $('#edit-database-config-dialog').find('input').each(function(index, element){
+                var key;
+
+                element = $(element);
+                key = element.prop('name').replace(/^databases_manager_configuration_form_edit\[(.*?)\]$/, '$1');
+
+                if (configData[key]) {
+                    element.val(configData[key]);
+                }
+            });
         });
     });
 </script>

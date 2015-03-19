@@ -3,6 +3,9 @@
     <route id="databases.manager.admin.config.add" path="/admin/module/DatabasesManager/add" methods="post">
         <default key="_controller">DatabasesManager:Configuration:addConfig</default>
     </route>
+    <route id="databases.manager.admin.config.edit" path="/admin/module/DatabasesManager/edit" methods="post">
+        <default key="_controller">DatabasesManager:Configuration:editConfig</default>
+    </route>
     <route id="databases.manager.admin.config.delete" path="/admin/module/DatabasesManager/delete/{configKey}" methods="get">
         <default key="_controller">DatabasesManager:Configuration:deleteConfig</default>
         <requirement key="configKey">.*</requirement>
