@@ -11,6 +11,10 @@
 
     <services>
         <service id="databases.manager.config.handler" class="DatabasesManager\Handler\ConfigurationHandler" />
+        <service id="databases.manager.kernel.listener" class="DatabasesManager\EventListener\KernelListener">
+            <argument type="service" id="databases.manager.config.handler"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
     </services>
 
     <commands>
