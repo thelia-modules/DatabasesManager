@@ -54,4 +54,27 @@ class ConfigurationHandler
         $fileSystem = new Filesystem;
         $fileSystem->dumpFile($this->configurationPath, $yml);
     }
+
+    /**
+     * Add an empty database configuration
+     *
+     * @param string $configurationLabel The database configuration label
+     */
+    public function addEmptyConfiguration($configurationLabel)
+    {
+        $databasesConfiguration = $this->parse();
+
+        if (strtolower($configurationLabel) !== 'thelia'
+            && !array_key_exists($configurationLabel, $databasesConfiguration)
+        ) {
+            $databasesConfiguration[$configurationLabel] = [
+                'host' => '',
+                'user' => '',
+                'pass' => '',
+                'db_name' => ''
+            ];
+
+            $this->dump($databasesConfiguration);
+        }
+    }
 }

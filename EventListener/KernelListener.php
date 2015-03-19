@@ -49,6 +49,10 @@ class KernelListener implements EventSubscriberInterface
         $manager = new ConnectionManagerSingle;
 
         foreach ($this->configHandler->parse() as $label => $databaseConfig) {
+            if (empty($databaseConfig['host']) || empty($databaseConfig['user']) || empty($databaseConfig['db_name'])) {
+                continue;
+            }
+
             $manager->setConfiguration([
                 'dsn' => 'mysql:host=' . $databaseConfig['host'] . ';dbname=' . $databaseConfig['db_name'],
                 'user' => $databaseConfig['user'],

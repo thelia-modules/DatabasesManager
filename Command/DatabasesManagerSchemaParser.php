@@ -178,11 +178,16 @@ abstract class DatabasesManagerSchemaParser extends BaseModuleGenerate
      */
     protected function splitSchema()
     {
+        /** @var \DatabasesManager\Handler\ConfigurationHandler $configHandler */
+        $configHandler = $this->getContainer()->get('databases.manager.config.handler');
+
         $domNodeList = $this->domSchema->getElementsByTagName('database');
         $this->maxSplitIdx = $domNodeList->length;
 
         /** @var \DOMElement $domElement */
         foreach ($domNodeList as $dbIdx => $domElement) {
+            $configHandler->addEmptyConfiguration($domElement->getAttribute('name'));
+
             $domDocument = new \DOMDocument('1.0', 'utf-8');
             $domDocument->appendChild($domDocument->importNode($domElement, true));
             $domDocument->save($this->moduleDirectory . DS . 'Config' . DS . $dbIdx . '_split_schema.xml');
