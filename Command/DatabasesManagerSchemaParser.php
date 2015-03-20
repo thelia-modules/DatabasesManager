@@ -64,7 +64,7 @@ abstract class DatabasesManagerSchemaParser extends BaseModuleGenerate
     protected function preExecute(InputInterface $input)
     {
         $this->module = $this->formatModuleName($input->getArgument('name'));
-        $this->moduleDirectory = THELIA_MODULE_DIR . DS . $this->module;
+        $this->moduleDirectory = THELIA_MODULE_DIR . $this->module;
 
         if ($this->fileSystem->exists($this->moduleDirectory) === false) {
             throw new \RuntimeException(sprintf('%s module does not exists', $this->module));
