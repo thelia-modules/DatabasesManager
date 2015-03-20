@@ -20,5 +20,6 @@
     <commands>
         <command class="DatabasesManager\Command\DatabasesManagerGenerateModelCommand" />
         <command class="DatabasesManager\Command\DatabasesManagerGenerateSqlCommand" />
+        <command class="DatabasesManager\Command\DatabasesManagerSchemaRecovery" />
     </commands>
 </config>
