@@ -71,5 +71,5 @@ can recover ```schema.xml``` if unexpected exit happens during any of two previo
 
 ### 3. Configuration
 
-Access to databases configuration by clicking on `Configure` from backoffice module manager. You can now add/edit/delete databases configurations.
+Access to databases configuration by clicking on `Configure` from backoffice module manager. You can now add/edit/delete databases configurations. <br />
 **But be careful**, configuration labels have to be the same as `schema.xml` `database ` nodes name, otherwise, models will not be able to find connection to their databases.
