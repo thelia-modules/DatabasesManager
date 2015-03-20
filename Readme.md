@@ -12,7 +12,7 @@ Copy the module into `<thelia_root>/local/modules/` directory and be sure that t
 
 Add it in your main thelia `composer.json` file.
 
-```sh
+```
 composer require bilhackmac/databases-manager-module:~1.0
 ```
 
@@ -24,7 +24,7 @@ Activate it in your thelia administration panel.
 
 ### 1. schema.xml
 
-Unmodified ```schema.xml``` files continue to work as expected but you can now add a new root ```databases``` node instead of ```database```
+Unmodified `schema.xml` files continue to work as expected but you can now add a new root `databases` node instead of `database`.
 
 ```xml
 <databases>
@@ -53,23 +53,26 @@ Unmodified ```schema.xml``` files continue to work as expected but you can now a
 
 Databases manager override two Thelia 2 commands and adds one.
 
-```sh
+```
 php Thelia module:generate:model <moduleName>
 ```
+
 and
 
-```sh
+```
 php Thelia module:generate:sql <moduleName>
 ```
 
-always work as expected but now handles `databases` and multiples `database` nodes in `schema.xml` files. These commands also add an empty database configuration for every unkown database name in configuration file (e.g. `anotherDB` in previous `schema.xml`)
+always work as expected but now handles `databases` and multiples `database` nodes in `schema.xml` files. These commands also add an empty database configuration for every unkown database name in configuration file (e.g. `anotherDB` in previous `schema.xml`).
 
-```sh
+```
 php Thelia module:schema:recovery <moduleName>
 ```
-can recover ```schema.xml``` if unexpected exit happens during any of two previous command (e.g. ```Ctrl + C```)
+
+can recover `schema.xml` if unexpected exit happens during any of two previous command (e.g. `Ctrl + C`).
 
 ### 3. Configuration
 
 Access to databases configuration by clicking on `Configure` from backoffice module manager. You can now add/edit/delete databases configurations. <br />
 **But be careful**, configuration labels have to be the same as `schema.xml` `database ` nodes name, otherwise, models will not be able to find connection to their databases.
+
