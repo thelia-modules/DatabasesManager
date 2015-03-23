@@ -1,5 +1,6 @@
 {
   "name": "bilhackmac/databases-manager-module",
+  "license": "GPL-3.0+",
   "type": "thelia-module",
   "require": {
     "thelia/installer": "~1.1"
