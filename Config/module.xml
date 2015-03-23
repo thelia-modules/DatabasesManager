@@ -15,12 +15,12 @@
         <language>en_US</language>
         <language>fr_FR</language>
     </languages>
-    <version>0.9</version>
+    <version>1.0</version>
     <author>
         <name>Jérôme Billiras</name>
         <email>jerome.billiras+github@gmail.com</email>
     </author>
     <type>classic</type>
     <thelia>2.1.0</thelia>
-    <stability>beta</stability>
+    <stability>prod</stability>
 </module>
