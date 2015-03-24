@@ -26,15 +26,16 @@ namespace DatabasesManager\EventListener;
 use DatabasesManager\Handler\ConfigurationHandler;
 use Propel\Runtime\Connection\ConnectionManagerSingle;
 use Propel\Runtime\Propel;
+use Symfony\Component\Console\ConsoleEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\KernelEvents;
 
 /**
- * Class KernelListener
+ * Class Subscriber
  *
  * @author Jérôme Billiras <jerome DOT billiras PLUS github AT gmail DOT com>
  */
-class KernelListener implements EventSubscriberInterface
+class Subscriber implements EventSubscriberInterface
 {
     /**
      * Class constructor
@@ -53,6 +54,9 @@ class KernelListener implements EventSubscriberInterface
     {
         return [
             KernelEvents::REQUEST => [
+                ['connectAllDatabases', 100]
+            ],
+            ConsoleEvents::COMMAND => [
                 ['connectAllDatabases', 100]
             ]
         ];

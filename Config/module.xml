@@ -21,6 +21,6 @@
         <email>jerome.billiras+github@gmail.com</email>
     </author>
     <type>classic</type>
-    <thelia>2.1.0</thelia>
+    <thelia>2.2.0</thelia>
     <stability>prod</stability>
 </module>
