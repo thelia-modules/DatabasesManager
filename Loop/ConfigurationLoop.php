@@ -30,11 +30,11 @@ use Thelia\Core\Template\Element\LoopResultRow;
 use Thelia\Core\Template\Loop\Argument\ArgumentCollection;
 
 /**
- * Class DatabasesManagerLoop
+ * Class ConfigurationLoop
  *
  * @author Jérôme Billiras <jerome DOT billiras PLUS github AT gmail DOT com>
  */
-class DatabasesManagerLoop extends BaseLoop implements ArraySearchLoopInterface
+class ConfigurationLoop extends BaseLoop implements ArraySearchLoopInterface
 {
     /**
      * @inheritdoc

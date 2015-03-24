@@ -25,19 +25,17 @@ namespace DatabasesManager\Command;
 
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Filesystem\Filesystem;
-use Symfony\Component\Finder\Finder;
-use Thelia\Command\BaseModuleGenerate;
 
 /**
- * Try to recover schema.xml file
+ * Generate sql for a specific module
  *
- * Class DatabasesManagerSchemaRecovery
+ * Class GenerateSqlCommand
  *
  * @author Jérôme Billiras <jerome DOT billiras PLUS github AT gmail DOT com>
  */
-class DatabasesManagerSchemaRecovery extends BaseModuleGenerate
+class GenerateSqlCommand extends SchemaParserCommand
 {
     /**
      * @inheritdoc
@@ -45,12 +43,18 @@ class DatabasesManagerSchemaRecovery extends BaseModuleGenerate
     public function configure()
     {
         $this
-            ->setName('module:schema:recovery')
-            ->setDescription('Recover split schema if unexpected problem append before merge')
+            ->setName('module:generate:sql')
+            ->setDescription('Generate the sql from schema.xml file')
             ->addArgument(
                 'name',
                 InputArgument::REQUIRED,
                 'Module name'
+            )
+            ->addOption(
+                'generate-model',
+                '-g',
+                InputOption::VALUE_NONE,
+                'Generate model files at the same time'
             )
         ;
     }
@@ -67,54 +71,22 @@ class DatabasesManagerSchemaRecovery extends BaseModuleGenerate
      */
     public function execute(InputInterface $input, OutputInterface $output)
     {
-        /** @var \Symfony\Component\Finder\SplFileInfo $file */
+        $this->preExecute($input);
 
-        $this->module = $this->formatModuleName($input->getArgument('name'));
-        $this->moduleDirectory = THELIA_MODULE_DIR . $this->module;
+        try {
+            $this->generateSql($output);
 
-        $filesystem = new Filesystem;
-
-        $finder = (new Finder)
-            ->files()
-            ->name('#^[0-9]+_split_schema\.xml$#')
-            ->in($this->moduleDirectory . DS . 'Config')
-        ;
-
-        $xxSplitRemoved = false;
-        foreach ($finder as $file) {
-            $filesystem->remove($file);
-            $xxSplitRemoved = true;
-        }
-        if ($xxSplitRemoved) {
-            $output->renderBlock([
-                '',
-                'xx_split_schema.xml successfully removed',
-                ''
-            ], 'bg=green;fg=black');
-            $output->writeln('');
-        }
-
-        $finder = (new Finder)
-            ->files()
-            ->name('#^split[0-9a-f]{13}$#')
-            ->in($this->moduleDirectory . DS . 'Config')
-        ;
-
-        if ($finder->count() === 1) {
-            foreach ($finder as $file) {
-                $filesystem->rename($file, $this->moduleDirectory . DS . 'Config' . DS . 'schema.xml');
+            if ($input->getOption('generate-model')) {
+                $output->writeln(' ');
+                $this->generateModel($output);
             }
-            $output->renderBlock([
-                '',
-                'schema.xml successfully recovered',
-                ''
-            ], 'bg=green;fg=black');
-        } else {
-            $output->renderBlock([
-                '',
-                'No schema.xml found to recover',
-                ''
-            ], 'bg=yellow;fg=black');
+        } catch (\Exception $exception) {
+        }
+
+        $this->postExecute($input);
+
+        if (isset($exception)) {
+            throw $exception;
         }
     }
 }

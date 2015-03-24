@@ -31,11 +31,11 @@ use Symfony\Component\Console\Output\OutputInterface;
 /**
  * Generate class model for a specific module
  *
- * Class DatabasesManagerGenerateModelCommand
+ * Class GenerateModelCommand
  *
  * @author Jérôme Billiras <jerome DOT billiras PLUS github AT gmail DOT com>
  */
-class DatabasesManagerGenerateModelCommand extends DatabasesManagerSchemaParser
+class GenerateModelCommand extends SchemaParserCommand
 {
     /**
      * @inheritdoc

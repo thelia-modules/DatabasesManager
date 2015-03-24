@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <config xmlns="http://thelia.net/schema/dic/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://thelia.net/schema/dic/config http://thelia.net/schema/dic/config/thelia-1.0.xsd">
     <loops>
-        <loop class="DatabasesManager\Loop\DatabasesManagerLoop" name="databases.manager.loop" />
+        <loop name="databases.manager.config.loop" class="DatabasesManager\Loop\ConfigurationLoop" />
     </loops>
 
     <forms>
-        <form name="databases.manager.form.add" class="DatabasesManager\Form\DatabaseConfigurationAddForm" />
-        <form name="databases.manager.form.edit" class="DatabasesManager\Form\DatabaseConfigurationEditForm" />
+        <form name="databases.manager.form.add" class="DatabasesManager\Form\AddForm" />
+        <form name="databases.manager.form.edit" class="DatabasesManager\Form\EditForm" />
     </forms>
 
     <services>
@@ -18,8 +18,8 @@
     </services>
 
     <commands>
-        <command class="DatabasesManager\Command\DatabasesManagerGenerateModelCommand" />
-        <command class="DatabasesManager\Command\DatabasesManagerGenerateSqlCommand" />
-        <command class="DatabasesManager\Command\DatabasesManagerSchemaRecovery" />
+        <command class="DatabasesManager\Command\GenerateModelCommand" />
+        <command class="DatabasesManager\Command\GenerateSqlCommand" />
+        <command class="DatabasesManager\Command\SchemaRecoveryCommand" />
     </commands>
 </config>

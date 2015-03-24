@@ -35,11 +35,11 @@ use Thelia\Command\BaseModuleGenerate;
 /**
  * Base class for databases manager model generators
  *
- * Class DatabasesManagerSchemaParser
+ * Class SchemaParserCommand
  *
  * @author Jérôme Billiras <jerome DOT billiras PLUS github AT gmail DOT com>
  */
-abstract class DatabasesManagerSchemaParser extends BaseModuleGenerate
+abstract class SchemaParserCommand extends BaseModuleGenerate
 {
     /** @var \Symfony\Component\Filesystem\Filesystem */
     protected $fileSystem;

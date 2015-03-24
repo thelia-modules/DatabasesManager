@@ -50,7 +50,7 @@ class ConfigurationController extends BaseAdminController
             return $authFail;
         }
 
-        /** @var \DatabasesManager\Form\DatabaseConfigurationForm $form */
+        /** @var \DatabasesManager\Form\AddForm $form */
         $form = $this->createForm('databases.manager.form.add');
         try {
             $this->validateForm($form);
@@ -122,7 +122,7 @@ class ConfigurationController extends BaseAdminController
             return $authFail;
         }
 
-        /** @var \DatabasesManager\Form\DatabaseConfigurationForm $form */
+        /** @var \DatabasesManager\Form\EditForm $form */
         $form = $this->createForm('databases.manager.form.edit');
         try {
             $this->validateForm($form);

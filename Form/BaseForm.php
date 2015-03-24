@@ -26,14 +26,14 @@ namespace DatabasesManager\Form;
 use DatabasesManager\DatabasesManager;
 use DatabasesManager\Validator\Constraints as ModuleAssert;
 use Symfony\Component\Validator\Constraints as Assert;
-use Thelia\Form\BaseForm;
+use Thelia\Form\BaseForm as TheliaBaseForm;
 
 /**
- * Class DatabaseConfigurationForm
+ * Class BaseForm
  *
  * @author Jérôme Billiras <jerome DOT billiras PLUS github AT gmail DOT com>
  */
-class DatabaseConfigurationForm extends BaseForm
+class BaseForm extends TheliaBaseForm
 {
     /** @var string Form name */
     const NAME = 'databases_manager_configuration_form';

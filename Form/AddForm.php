@@ -24,28 +24,12 @@
 namespace DatabasesManager\Form;
 
 /**
- * Class DatabaseConfigurationEditForm
+ * Class AddForm
  *
  * @author Jérôme Billiras <jerome DOT billiras PLUS github AT gmail DOT com>
  */
-class DatabaseConfigurationEditForm extends DatabaseConfigurationForm
+class AddForm extends BaseForm
 {
     /** @var string Form name */
-    const NAME = 'databases_manager_configuration_form_edit';
-
-    /**
-     * @inheritdoc
-     */
-    protected function buildForm()
-    {
-        $this->formBuilder
-            ->add('original_label', 'hidden', [
-                'attr' => [
-                    'id' =>  $this->getName() . '-original_label'
-                ]
-            ])
-        ;
-
-        parent::buildForm();
-    }
+    const NAME = 'databases_manager_configuration_form_add';
 }
