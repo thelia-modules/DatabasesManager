@@ -26,9 +26,8 @@ namespace DatabasesManager\EventListener;
 use DatabasesManager\Handler\ConfigurationHandler;
 use Propel\Runtime\Connection\ConnectionManagerSingle;
 use Propel\Runtime\Propel;
-use Symfony\Component\Console\ConsoleEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\HttpKernel\KernelEvents;
+use Thelia\Core\Event\TheliaEvents;
 
 /**
  * Class Subscriber
@@ -53,10 +52,7 @@ class Subscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return [
-            KernelEvents::REQUEST => [
-                ['connectAllDatabases', 100]
-            ],
-            ConsoleEvents::COMMAND => [
+            TheliaEvents::BOOT => [
                 ['connectAllDatabases', 100]
             ]
         ];
