@@ -63,23 +63,24 @@ class Subscriber implements EventSubscriberInterface
      */
     public function connectAllDatabases()
     {
-        $manager = new ConnectionManagerSingle;
+        /** @var \Propel\Runtime\ServiceContainer\StandardServiceContainer $serviceContainer */
+        $serviceContainer = Propel::getServiceContainer();
 
         foreach ($this->configHandler->parse() as $label => $databaseConfig) {
             if (empty($databaseConfig['host']) || empty($databaseConfig['user']) || empty($databaseConfig['db_name'])) {
                 continue;
             }
 
+            $manager = new ConnectionManagerSingle;
             $manager->setConfiguration([
                 'dsn' => 'mysql:host=' . $databaseConfig['host'] . ';dbname=' . $databaseConfig['db_name'],
                 'user' => $databaseConfig['user'],
                 'password' => $databaseConfig['pass'],
             ]);
+            $manager->setName($label);
 
-            /** @var \Propel\Runtime\ServiceContainer\StandardServiceContainer $serviceContainer */
-            $serviceContainer = Propel::getServiceContainer();
-            $serviceContainer->setAdapterClass($label, 'mysql');
             $serviceContainer->setConnectionManager($label, $manager);
+            $serviceContainer->setAdapterClass($label, 'mysql');
         }
     }
 }
