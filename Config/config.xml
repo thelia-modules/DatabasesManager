@@ -10,7 +10,9 @@
     </forms>
 
     <services>
-        <service id="databases.manager.config.handler" class="DatabasesManager\Handler\ConfigurationHandler" />
+        <service id="databases.manager.config.handler" class="DatabasesManager\Handler\ConfigurationHandler">
+            <argument type="string">%kernel.environment%</argument>
+        </service>
         <service id="databases.manager.event.subscriber" class="DatabasesManager\EventListener\Subscriber">
             <argument type="service" id="databases.manager.config.handler"/>
             <tag name="kernel.event_subscriber"/>

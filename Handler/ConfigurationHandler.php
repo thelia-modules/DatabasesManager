@@ -36,40 +36,66 @@ class ConfigurationHandler
     /** @var string Path to databases configuration file */
     protected $configurationPath;
 
+    /** @var string Path to databases environment dependent configuration file */
+    protected $envConfigurationPath;
+
     /**
      * Class constructor
+     *
+     * @param string $environment Current environment
      */
-    public function __construct()
+    public function __construct($environment = null)
     {
         $this->configurationPath = THELIA_MODULE_DIR . 'DatabasesManager' . DS . 'Config' . DS . 'databases.yml';
+        $this->envConfigurationPath = THELIA_MODULE_DIR . 'DatabasesManager' . DS . 'Config' . DS
+            . 'databases_' . $environment . '.yml'
+        ;
 
         $fileSystem = new Filesystem;
         if (!$fileSystem->exists($this->configurationPath)) {
             $fileSystem->touch($this->configurationPath);
+        }
+        if (!$fileSystem->exists($this->envConfigurationPath)) {
+            $fileSystem->touch($this->envConfigurationPath);
         }
     }
 
     /**
      * Parse configuration file and return content
      *
+     * @param boolean $useEnvironment Use current environment
+     *
      * @return array
      */
-    public function parse()
+    public function parse($useEnvironment = null)
     {
-        return (array) Yaml::parse($this->configurationPath);
+        if ($useEnvironment) {
+            $configuration = Yaml::parse($this->envConfigurationPath);
+        } else {
+            $configuration = Yaml::parse($this->configurationPath);
+        }
+
+        return (array) $configuration;
     }
 
     /**
      * Dump databases configuration to file
      *
      * @param array $databasesConfig
+     * @param boolean $useEnvironment Use current environment
      */
-    public function dump(array $databasesConfig)
+    public function dump(array $databasesConfig, $useEnvironment = null)
     {
         $yml = Yaml::dump($databasesConfig);
 
+        if ($useEnvironment) {
+            $configurationPath = $this->envConfigurationPath;
+        } else {
+            $configurationPath = $this->configurationPath;
+        }
+
         $fileSystem = new Filesystem;
-        $fileSystem->dumpFile($this->configurationPath, $yml);
+        $fileSystem->dumpFile($configurationPath, $yml);
     }
 
     /**

@@ -27,7 +27,8 @@
  * @author Jérôme Billiras <jerome DOT billiras PLUS github AT gmail DOT com>
  */
 return [
-    'VIEW_TITLE' => 'Configuration des bases de données.',
+    'SHARED_VIEW_TITLE' => 'Configuration partagée des bases de données.',
+    'ENV_VIEW_TITLE' => 'Configuration des bases de données de l\'environnement courant.',
 
     'NO_CONFIG' => 'Aucune configuration',
 

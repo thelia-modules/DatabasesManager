@@ -21,8 +21,9 @@
 {**********************************************************************************}
 <div class="general-block-decorator">
     <div class="row">
+        ---{$kernelEnvironment}---{$moduleCode}---
         <div class="col-xs-12 title title-without-tabs clearfix">
-            {intl l="VIEW_TITLE" d="databasesmanager.ai"}
+            {intl l="SHARED_VIEW_TITLE" d="databasesmanager.ai"}
             {loop type="auth" name="auth-add" role="ADMIN" resource="admin.module" module="databasesmanager" access="CREATE"}
                 <div class="pull-right">
                     <a class="btn btn-primary" href="#add-database-config-dialog" title="{intl l="ADD_BUTTON" d="databasesmanager.ai"}" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a>
@@ -121,6 +122,100 @@
                             </td>
                         </tr>
                     {/elseloop}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 title title-without-tabs clearfix">
+            {intl l="ENV_VIEW_TITLE" d="databasesmanager.ai"}
+            {loop type="auth" name="auth-add" role="ADMIN" resource="admin.module" module="databasesmanager" access="CREATE"}
+                <div class="pull-right">
+                    <a class="btn btn-primary" href="#add-database-config-dialog" title="{intl l="ADD_BUTTON" d="databasesmanager.ai"}" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a>
+                </div>
+            {/loop}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 table-responsive">
+            <table id="databases-manager-config-listTODO" class="table table-hover">
+                <thead>
+                <tr>
+                    <th>
+                        {intl l="TABLE_HEAD_LABEL" d="databasesmanager.ai"}
+                    </th>
+                    <th>
+                        {intl l="TABLE_HEAD_HOST" d="databasesmanager.ai"}
+                    </th>
+                    <th>
+                        {intl l="TABLE_HEAD_USER" d="databasesmanager.ai"}
+                    </th>
+                    <th>
+                        {intl l="TABLE_HEAD_PASS" d="databasesmanager.ai"}
+
+                        <div class="btn-group btn-group-xs pull-right">
+                            <span class="btn btn-default" title="{intl l="PWDS_ACTION_HIDE" d="databasesmanager.ai"}" data-pwd-action="hideAll"><span class="glyphicon glyphicon-eye-close"></span></span>
+                        </div>
+                    </th>
+                    <th>
+                        {intl l="TABLE_HEAD_DB_NAME" d="databasesmanager.ai"}
+                    </th>
+                    <th>
+                        {intl l="TABLE_HEAD_ACTION" d="databasesmanager.ai"}
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                {loop type="databases.manager.config.loop" name="databases.manager.config.loop" current_env=true}
+                    <tr>
+                        <td>
+                            {$LABEL}
+                        </td>
+                        <td>
+                            {$HOST}
+                        </td>
+                        <td>
+                            {$USER}
+                        </td>
+                        <td>
+                            <span class="hidden" data-pwd-view="clear">{$PASS}</span>
+                            <span data-pwd-view="shadow">########</span>
+
+                            <div class="btn-group btn-group-xs pull-right">
+                                <span class="btn btn-default" title="{intl l="PWD_ACTION_SHOW" d="databasesmanager.ai"}" data-pwd-action="show"><span class="glyphicon glyphicon-eye-open"></span></span>
+                            </div>
+                        </td>
+                        <td>
+                            {$DB_NAME}
+                        </td>
+                        <td>
+                            <div class="btn-group btn-group-xs">
+                                {loop type="auth" name="auth-edit" role="ADMIN" resource="admin.module" module="databasesmanager" access="UPDATE"}
+                                    <a class="btn btn-default" href="#edit-database-config-dialog" title="{intl l="ACTION_EDIT" d="databasesmanager.ai"}" data-toggle="modal" data-key="{$LABEL}" data-data="{$JSON}"><span class="glyphicon glyphicon-edit"></span></a>
+                                {/loop}
+                                {elseloop rel="auth-edit"}
+                                    <span class="btn btn-default disabled" title="{intl l="ACTION_EDIT" d="databasesmanager.ai"}"><span class="glyphicon glyphicon-edit"></span></span>
+                                {/elseloop}
+
+                                {loop type="auth" name="auth-delete" role="ADMIN" resource="admin.module" module="databasesmanager" access="DELETE"}
+                                    <a class="btn btn-default" href="#delete-database-config-dialog" title="{intl l="ACTION_DELETE" d="databasesmanager.ai"}" data-toggle="modal" data-key="{$LABEL}"><span class="glyphicon glyphicon-trash"></span></a>
+                                {/loop}
+                                {elseloop rel="auth-delete"}
+                                    <span class="btn btn-default disabled" title="{intl l="ACTION_DELETE" d="databasesmanager.ai"}"><span class="glyphicon glyphicon-trash"></span></span>
+                                {/elseloop}
+                            </div>
+                        </td>
+                    </tr>
+                {/loop}
+                {elseloop rel="databases.manager.config.loop"}
+                    <tr>
+                        <td class="text-center" colspan="6">
+                            {intl l="NO_CONFIG" d="databasesmanager.ai"}
+                        </td>
+                    </tr>
+                {/elseloop}
                 </tbody>
             </table>
         </div>

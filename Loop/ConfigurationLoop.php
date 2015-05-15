@@ -27,6 +27,7 @@ use Thelia\Core\Template\Element\ArraySearchLoopInterface;
 use Thelia\Core\Template\Element\BaseLoop;
 use Thelia\Core\Template\Element\LoopResult;
 use Thelia\Core\Template\Element\LoopResultRow;
+use Thelia\Core\Template\Loop\Argument\Argument;
 use Thelia\Core\Template\Loop\Argument\ArgumentCollection;
 
 /**
@@ -41,7 +42,9 @@ class ConfigurationLoop extends BaseLoop implements ArraySearchLoopInterface
      */
     protected function getArgDefinitions()
     {
-        return new ArgumentCollection;
+        return new ArgumentCollection(
+            Argument::createBooleanTypeArgument('current_env')
+        );
     }
 
     /**
@@ -52,7 +55,7 @@ class ConfigurationLoop extends BaseLoop implements ArraySearchLoopInterface
         /** @var \DatabasesManager\Handler\ConfigurationHandler $configHandler */
         $configHandler = $this->container->get('databases.manager.config.handler');
 
-        return $configHandler->parse();
+        return $configHandler->parse($this->getCurrentEnv());
     }
 
     /**
