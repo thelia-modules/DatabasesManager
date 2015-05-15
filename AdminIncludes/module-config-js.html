@@ -20,6 +20,17 @@
 {*                                                                                *}
 {**********************************************************************************}
 <script type="application/javascript">
+    function databasesManagerPwdButtonSwitch(icon, myEyesAreOpen)
+    {
+        if (icon) {
+            if (myEyesAreOpen) {
+                icon.addClass('glyphicon-eye-open').removeClass('glyphicon-eye-close');
+            } else {
+                icon.removeClass('glyphicon-eye-open').addClass('glyphicon-eye-close');
+            }
+        }
+    }
+
     $(function(){
         var databasesManagerConfigList, deleteValidButton;
 
@@ -57,5 +68,66 @@
                 }
             });
         });
+
+        databasesManagerConfigList.add('#add-database-config-dialog').add('#edit-database-config-dialog').on(
+            'click',
+            '[data-pwd-action]',
+            function(clickEvent)
+        {
+            var button, icon, cell;
+
+            button = $(clickEvent.currentTarget);
+            icon = button.find('span.glyphicon');
+            cell = button.parents('td:first');
+
+            switch (button.attr('data-pwd-action')) {
+                case 'show':
+                    button
+                        .attr('data-pwd-action', 'hide')
+                        .prop('title', '{intl l="PWD_ACTION_HIDE" d="databasesmanager.ai"}')
+                    ;
+                    databasesManagerPwdButtonSwitch(icon);
+
+                    cell.find('[data-pwd-view=clear]').show();
+                    cell.find('[data-pwd-view=shadow]').hide();
+                    break;
+
+                case 'hide':
+                    button
+                        .attr('data-pwd-action', 'show')
+                        .prop('title', '{intl l="PWD_ACTION_SHOW" d="databasesmanager.ai"}')
+                    ;
+                    databasesManagerPwdButtonSwitch(icon, true);
+
+                    cell.find('[data-pwd-view=clear]').hide();
+                    cell.find('[data-pwd-view=shadow]').show();
+                    break;
+
+                case 'hideAll':
+                    databasesManagerConfigList.find('[data-pwd-action="hide"]').click();
+                    break;
+
+                case 'form-show':
+                    button
+                        .attr('data-pwd-action', 'form-hide')
+                        .prop('title', '{intl l="PWD_ACTION_HIDE" d="databasesmanager.ai"}')
+                        .parent()
+                        .find('input[type="password"]').prop('type', 'text')
+                    ;
+                    databasesManagerPwdButtonSwitch(icon);
+                    break;
+
+                case 'form-hide':
+                    button
+                        .attr('data-pwd-action', 'form-show')
+                        .prop('title', '{intl l="PWD_ACTION_SHOW" d="databasesmanager.ai"}')
+                        .parent()
+                        .find('input[type="text"]').prop('type', 'password')
+                    ;
+                    databasesManagerPwdButtonSwitch(icon, true);
+                    break;
+            }
+        });
+        databasesManagerConfigList.find('[data-pwd-view=clear]').removeClass('hidden').hide();
     });
 </script>

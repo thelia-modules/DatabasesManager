@@ -59,6 +59,10 @@
                         </th>
                         <th>
                             {intl l="TABLE_HEAD_PASS" d="databasesmanager.ai"}
+
+                            <div class="btn-group btn-group-xs pull-right">
+                                <span class="btn btn-default" title="{intl l="PWDS_ACTION_HIDE" d="databasesmanager.ai"}" data-pwd-action="hideAll"><span class="glyphicon glyphicon-eye-close"></span></span>
+                            </div>
                         </th>
                         <th>
                             {intl l="TABLE_HEAD_DB_NAME" d="databasesmanager.ai"}
@@ -81,7 +85,12 @@
                                 {$USER}
                             </td>
                             <td>
-                                {$PASS}
+                                <span class="hidden" data-pwd-view="clear">{$PASS}</span>
+                                <span data-pwd-view="shadow">########</span>
+
+                                <div class="btn-group btn-group-xs pull-right">
+                                    <span class="btn btn-default" title="{intl l="PWD_ACTION_SHOW" d="databasesmanager.ai"}" data-pwd-action="show"><span class="glyphicon glyphicon-eye-open"></span></span>
+                                </div>
                             </td>
                             <td>
                                 {$DB_NAME}
@@ -179,7 +188,10 @@
                                 {form_field form=$form field="pass"}
                                     <div class="form-group{if $error} has-error{/if}">
                                         <label class="control-label" for="{$label_attr.for}">{intl l=$label d="databasesmanager.ai"}</label>
-                                        <input id="{$label_attr.for}" class="form-control" type="text" name="{$name}" value="{$value}" {$attr}>
+                                        <div class="input-group">
+                                            <input id="{$label_attr.for}" class="form-control" type="password" name="{$name}" value="{$value}" autocomplete="off" {$attr}>
+                                            <span class="input-group-addon btn btn-default" title="{intl l="PWD_ACTION_SHOW" d="databasesmanager.ai"}" data-pwd-action="form-show"><span class="glyphicon glyphicon-eye-open"></span></span>
+                                        </div>
                                         {if $error}
                                             <div class="text-danger">
                                                 {$message}
@@ -274,7 +286,10 @@
                                 {form_field form=$form field="pass"}
                                     <div class="form-group{if $error} has-error{/if}">
                                         <label class="control-label" for="{$label_attr.for}">{intl l=$label d="databasesmanager.ai"}</label>
-                                        <input id="{$label_attr.for}" class="form-control" type="text" name="{$name}" value="{$value}" {$attr}>
+                                        <div class="input-group">
+                                            <input id="{$label_attr.for}" class="form-control" type="password" name="{$name}" value="{$value}" autocomplete="off" {$attr}>
+                                            <span class="input-group-addon btn btn-default" title="{intl l="PWD_ACTION_SHOW" d="databasesmanager.ai"}" data-pwd-action="form-show"><span class="glyphicon glyphicon-eye-open"></span></span>
+                                        </div>
                                         {if $error}
                                             <div class="text-danger">
                                                 {$message}

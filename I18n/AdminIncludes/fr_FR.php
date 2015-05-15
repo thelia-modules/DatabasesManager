@@ -38,6 +38,10 @@ return [
     'TABLE_HEAD_DB_NAME' => 'Nom de la base',
     'TABLE_HEAD_ACTION' => 'Action',
 
+    'PWDS_ACTION_HIDE' => 'Masquer les mots de passe',
+    'PWD_ACTION_SHOW' => 'Afficher le mot de passe',
+    'PWD_ACTION_HIDE' => 'Masquer le mot de passe',
+
     'ACTION_EDIT' => 'Modifier la base de données',
     'ACTION_DELETE' => 'Supprimer la base de données',
 

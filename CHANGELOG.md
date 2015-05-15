@@ -1,3 +1,6 @@
+# 1.1.2
+- Add password obfuscation
+
 # 1.1.1
 - Initialize connections to databases on `TheliaEvents::BOOT` event.
 - Downgrade Thelia required version to 2.0.0

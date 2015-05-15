@@ -38,6 +38,10 @@ return [
     'TABLE_HEAD_DB_NAME' => 'Database name',
     'TABLE_HEAD_ACTION' => 'Action',
 
+    'PWDS_ACTION_HIDE' => 'Hide passwords',
+    'PWD_ACTION_SHOW' => 'Show password',
+    'PWD_ACTION_HIDE' => 'Hide password',
+
     'ACTION_EDIT' => 'Edit database',
     'ACTION_DELETE' => 'Delete database',
 
