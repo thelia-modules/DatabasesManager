@@ -66,7 +66,7 @@ class Subscriber implements EventSubscriberInterface
         /** @var \Propel\Runtime\ServiceContainer\StandardServiceContainer $serviceContainer */
         $serviceContainer = Propel::getServiceContainer();
 
-        foreach ($this->configHandler->parse() as $label => $databaseConfig) {
+        foreach ($this->configHandler->parseBoth() as $label => $databaseConfig) {
             if (empty($databaseConfig['host']) || empty($databaseConfig['user']) || empty($databaseConfig['db_name'])) {
                 continue;
             }

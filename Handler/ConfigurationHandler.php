@@ -79,6 +79,21 @@ class ConfigurationHandler
     }
 
     /**
+     * Parse shared and for current environment configuration files and return content
+     *
+     * @return array
+     */
+    public function parseBoth()
+    {
+        $sharedConfig = (array) Yaml::parse($this->configurationPath);
+        $envConfig = (array) Yaml::parse($this->envConfigurationPath);
+
+        $mergedConfig = array_merge($sharedConfig, $envConfig);
+
+        return $mergedConfig;
+    }
+
+    /**
      * Dump databases configuration to file
      *
      * @param array $databasesConfig
