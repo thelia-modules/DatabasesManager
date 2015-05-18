@@ -68,7 +68,7 @@ class ConfigurationController extends BaseAdminController
                         [
                             '%label' => $newConfigKey
                         ],
-                        DatabasesManager::DOMAIN_NAME . '.ai'
+                        DatabasesManager::DOMAIN_NAME
                     )
                 );
             }
@@ -140,7 +140,7 @@ class ConfigurationController extends BaseAdminController
                         [
                             '%label' => $originalConfigKey
                         ],
-                        DatabasesManager::DOMAIN_NAME . '.ai'
+                        DatabasesManager::DOMAIN_NAME
                     )
                 );
             }
@@ -154,7 +154,7 @@ class ConfigurationController extends BaseAdminController
                         [
                             '%label' => $newConfigKey
                         ],
-                        DatabasesManager::DOMAIN_NAME . '.ai'
+                        DatabasesManager::DOMAIN_NAME
                     )
                 );
             }
@@ -227,7 +227,7 @@ class ConfigurationController extends BaseAdminController
                     [
                         '%label' => $configKey
                     ],
-                    DatabasesManager::DOMAIN_NAME . '.ai'
+                    DatabasesManager::DOMAIN_NAME
                 )
             );
         } else {
@@ -238,7 +238,7 @@ class ConfigurationController extends BaseAdminController
                     [
                         '%label' => $configKey
                     ],
-                    DatabasesManager::DOMAIN_NAME . '.ai'
+                    DatabasesManager::DOMAIN_NAME
                 )
             );
         }

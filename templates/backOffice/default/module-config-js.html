@@ -84,7 +84,7 @@
                 case 'show':
                     button
                         .attr('data-pwd-action', 'hide')
-                        .prop('title', '{intl l="PWD_ACTION_HIDE" d="databasesmanager.ai"}')
+                        .prop('title', '{intl l="PWD_ACTION_HIDE" d="databasesmanager"}')
                     ;
                     databasesManagerPwdButtonSwitch(icon);
 
@@ -95,7 +95,7 @@
                 case 'hide':
                     button
                         .attr('data-pwd-action', 'show')
-                        .prop('title', '{intl l="PWD_ACTION_SHOW" d="databasesmanager.ai"}')
+                        .prop('title', '{intl l="PWD_ACTION_SHOW" d="databasesmanager"}')
                     ;
                     databasesManagerPwdButtonSwitch(icon, true);
 
@@ -110,7 +110,7 @@
                 case 'form-show':
                     button
                         .attr('data-pwd-action', 'form-hide')
-                        .prop('title', '{intl l="PWD_ACTION_HIDE" d="databasesmanager.ai"}')
+                        .prop('title', '{intl l="PWD_ACTION_HIDE" d="databasesmanager"}')
                         .parent()
                         .find('input[type="password"]').prop('type', 'text')
                     ;
@@ -120,7 +120,7 @@
                 case 'form-hide':
                     button
                         .attr('data-pwd-action', 'form-show')
-                        .prop('title', '{intl l="PWD_ACTION_SHOW" d="databasesmanager.ai"}')
+                        .prop('title', '{intl l="PWD_ACTION_SHOW" d="databasesmanager"}')
                         .parent()
                         .find('input[type="text"]').prop('type', 'password')
                     ;

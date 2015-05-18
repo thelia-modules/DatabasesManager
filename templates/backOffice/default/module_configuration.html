@@ -21,12 +21,11 @@
 {**********************************************************************************}
 <div class="general-block-decorator">
     <div class="row">
-        ---{$kernelEnvironment}---{$moduleCode}---
         <div class="col-xs-12 title title-without-tabs clearfix">
-            {intl l="SHARED_VIEW_TITLE" d="databasesmanager.ai"}
+            {intl l="SHARED_VIEW_TITLE" d="databasesmanager"}
             {loop type="auth" name="auth-add" role="ADMIN" resource="admin.module" module="databasesmanager" access="CREATE"}
                 <div class="pull-right">
-                    <a class="btn btn-primary" href="#add-database-config-dialog" title="{intl l="ADD_BUTTON" d="databasesmanager.ai"}" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a>
+                    <a class="btn btn-primary" href="#add-database-config-dialog" title="{intl l="ADD_BUTTON" d="databasesmanager"}" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a>
                 </div>
             {/loop}
         </div>
@@ -50,26 +49,26 @@
                 <thead>
                     <tr>
                         <th>
-                            {intl l="TABLE_HEAD_LABEL" d="databasesmanager.ai"}
+                            {intl l="TABLE_HEAD_LABEL" d="databasesmanager"}
                         </th>
                         <th>
-                            {intl l="TABLE_HEAD_HOST" d="databasesmanager.ai"}
+                            {intl l="TABLE_HEAD_HOST" d="databasesmanager"}
                         </th>
                         <th>
-                            {intl l="TABLE_HEAD_USER" d="databasesmanager.ai"}
+                            {intl l="TABLE_HEAD_USER" d="databasesmanager"}
                         </th>
                         <th>
-                            {intl l="TABLE_HEAD_PASS" d="databasesmanager.ai"}
+                            {intl l="TABLE_HEAD_PASS" d="databasesmanager"}
 
                             <div class="btn-group btn-group-xs pull-right">
-                                <span class="btn btn-default" title="{intl l="PWDS_ACTION_HIDE" d="databasesmanager.ai"}" data-pwd-action="hideAll"><span class="glyphicon glyphicon-eye-close"></span></span>
+                                <span class="btn btn-default" title="{intl l="PWDS_ACTION_HIDE" d="databasesmanager"}" data-pwd-action="hideAll"><span class="glyphicon glyphicon-eye-close"></span></span>
                             </div>
                         </th>
                         <th>
-                            {intl l="TABLE_HEAD_DB_NAME" d="databasesmanager.ai"}
+                            {intl l="TABLE_HEAD_DB_NAME" d="databasesmanager"}
                         </th>
                         <th>
-                            {intl l="TABLE_HEAD_ACTION" d="databasesmanager.ai"}
+                            {intl l="TABLE_HEAD_ACTION" d="databasesmanager"}
                         </th>
                     </tr>
                 </thead>
@@ -90,7 +89,7 @@
                                 <span data-pwd-view="shadow">########</span>
 
                                 <div class="btn-group btn-group-xs pull-right">
-                                    <span class="btn btn-default" title="{intl l="PWD_ACTION_SHOW" d="databasesmanager.ai"}" data-pwd-action="show"><span class="glyphicon glyphicon-eye-open"></span></span>
+                                    <span class="btn btn-default" title="{intl l="PWD_ACTION_SHOW" d="databasesmanager"}" data-pwd-action="show"><span class="glyphicon glyphicon-eye-open"></span></span>
                                 </div>
                             </td>
                             <td>
@@ -99,17 +98,17 @@
                             <td>
                                 <div class="btn-group btn-group-xs">
                                     {loop type="auth" name="auth-edit" role="ADMIN" resource="admin.module" module="databasesmanager" access="UPDATE"}
-                                        <a class="btn btn-default" href="#edit-database-config-dialog" title="{intl l="ACTION_EDIT" d="databasesmanager.ai"}" data-toggle="modal" data-key="{$LABEL}" data-data="{$JSON}"><span class="glyphicon glyphicon-edit"></span></a>
+                                        <a class="btn btn-default" href="#edit-database-config-dialog" title="{intl l="ACTION_EDIT" d="databasesmanager"}" data-toggle="modal" data-key="{$LABEL}" data-data="{$JSON}"><span class="glyphicon glyphicon-edit"></span></a>
                                     {/loop}
                                     {elseloop rel="auth-edit"}
-                                        <span class="btn btn-default disabled" title="{intl l="ACTION_EDIT" d="databasesmanager.ai"}"><span class="glyphicon glyphicon-edit"></span></span>
+                                        <span class="btn btn-default disabled" title="{intl l="ACTION_EDIT" d="databasesmanager"}"><span class="glyphicon glyphicon-edit"></span></span>
                                     {/elseloop}
 
                                     {loop type="auth" name="auth-delete" role="ADMIN" resource="admin.module" module="databasesmanager" access="DELETE"}
-                                        <a class="btn btn-default" href="#delete-database-config-dialog" title="{intl l="ACTION_DELETE" d="databasesmanager.ai"}" data-toggle="modal" data-key="{$LABEL}"><span class="glyphicon glyphicon-trash"></span></a>
+                                        <a class="btn btn-default" href="#delete-database-config-dialog" title="{intl l="ACTION_DELETE" d="databasesmanager"}" data-toggle="modal" data-key="{$LABEL}"><span class="glyphicon glyphicon-trash"></span></a>
                                     {/loop}
                                     {elseloop rel="auth-delete"}
-                                        <span class="btn btn-default disabled" title="{intl l="ACTION_DELETE" d="databasesmanager.ai"}"><span class="glyphicon glyphicon-trash"></span></span>
+                                        <span class="btn btn-default disabled" title="{intl l="ACTION_DELETE" d="databasesmanager"}"><span class="glyphicon glyphicon-trash"></span></span>
                                     {/elseloop}
                                 </div>
                             </td>
@@ -118,7 +117,7 @@
                     {elseloop rel="databases.manager.config.loop"}
                         <tr>
                             <td class="text-center" colspan="6">
-                                {intl l="NO_CONFIG" d="databasesmanager.ai"}
+                                {intl l="NO_CONFIG" d="databasesmanager"}
                             </td>
                         </tr>
                     {/elseloop}
@@ -129,10 +128,10 @@
 
     <div class="row">
         <div class="col-xs-12 title title-without-tabs clearfix">
-            {intl l="ENV_VIEW_TITLE" d="databasesmanager.ai"}
+            {intl l="ENV_VIEW_TITLE" d="databasesmanager" env=$kernelEnvironment}
             {loop type="auth" name="auth-add" role="ADMIN" resource="admin.module" module="databasesmanager" access="CREATE"}
                 <div class="pull-right">
-                    <a class="btn btn-primary" href="#add-database-config-dialog" title="{intl l="ADD_BUTTON" d="databasesmanager.ai"}" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a>
+                    <a class="btn btn-primary" href="#add-database-config-dialog" title="{intl l="ADD_BUTTON" d="databasesmanager"}" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a>
                 </div>
             {/loop}
         </div>
@@ -144,26 +143,26 @@
                 <thead>
                 <tr>
                     <th>
-                        {intl l="TABLE_HEAD_LABEL" d="databasesmanager.ai"}
+                        {intl l="TABLE_HEAD_LABEL" d="databasesmanager"}
                     </th>
                     <th>
-                        {intl l="TABLE_HEAD_HOST" d="databasesmanager.ai"}
+                        {intl l="TABLE_HEAD_HOST" d="databasesmanager"}
                     </th>
                     <th>
-                        {intl l="TABLE_HEAD_USER" d="databasesmanager.ai"}
+                        {intl l="TABLE_HEAD_USER" d="databasesmanager"}
                     </th>
                     <th>
-                        {intl l="TABLE_HEAD_PASS" d="databasesmanager.ai"}
+                        {intl l="TABLE_HEAD_PASS" d="databasesmanager"}
 
                         <div class="btn-group btn-group-xs pull-right">
-                            <span class="btn btn-default" title="{intl l="PWDS_ACTION_HIDE" d="databasesmanager.ai"}" data-pwd-action="hideAll"><span class="glyphicon glyphicon-eye-close"></span></span>
+                            <span class="btn btn-default" title="{intl l="PWDS_ACTION_HIDE" d="databasesmanager"}" data-pwd-action="hideAll"><span class="glyphicon glyphicon-eye-close"></span></span>
                         </div>
                     </th>
                     <th>
-                        {intl l="TABLE_HEAD_DB_NAME" d="databasesmanager.ai"}
+                        {intl l="TABLE_HEAD_DB_NAME" d="databasesmanager"}
                     </th>
                     <th>
-                        {intl l="TABLE_HEAD_ACTION" d="databasesmanager.ai"}
+                        {intl l="TABLE_HEAD_ACTION" d="databasesmanager"}
                     </th>
                 </tr>
                 </thead>
@@ -184,7 +183,7 @@
                             <span data-pwd-view="shadow">########</span>
 
                             <div class="btn-group btn-group-xs pull-right">
-                                <span class="btn btn-default" title="{intl l="PWD_ACTION_SHOW" d="databasesmanager.ai"}" data-pwd-action="show"><span class="glyphicon glyphicon-eye-open"></span></span>
+                                <span class="btn btn-default" title="{intl l="PWD_ACTION_SHOW" d="databasesmanager"}" data-pwd-action="show"><span class="glyphicon glyphicon-eye-open"></span></span>
                             </div>
                         </td>
                         <td>
@@ -193,17 +192,17 @@
                         <td>
                             <div class="btn-group btn-group-xs">
                                 {loop type="auth" name="auth-edit" role="ADMIN" resource="admin.module" module="databasesmanager" access="UPDATE"}
-                                    <a class="btn btn-default" href="#edit-database-config-dialog" title="{intl l="ACTION_EDIT" d="databasesmanager.ai"}" data-toggle="modal" data-key="{$LABEL}" data-data="{$JSON}"><span class="glyphicon glyphicon-edit"></span></a>
+                                    <a class="btn btn-default" href="#edit-database-config-dialog" title="{intl l="ACTION_EDIT" d="databasesmanager"}" data-toggle="modal" data-key="{$LABEL}" data-data="{$JSON}"><span class="glyphicon glyphicon-edit"></span></a>
                                 {/loop}
                                 {elseloop rel="auth-edit"}
-                                    <span class="btn btn-default disabled" title="{intl l="ACTION_EDIT" d="databasesmanager.ai"}"><span class="glyphicon glyphicon-edit"></span></span>
+                                    <span class="btn btn-default disabled" title="{intl l="ACTION_EDIT" d="databasesmanager"}"><span class="glyphicon glyphicon-edit"></span></span>
                                 {/elseloop}
 
                                 {loop type="auth" name="auth-delete" role="ADMIN" resource="admin.module" module="databasesmanager" access="DELETE"}
-                                    <a class="btn btn-default" href="#delete-database-config-dialog" title="{intl l="ACTION_DELETE" d="databasesmanager.ai"}" data-toggle="modal" data-key="{$LABEL}"><span class="glyphicon glyphicon-trash"></span></a>
+                                    <a class="btn btn-default" href="#delete-database-config-dialog" title="{intl l="ACTION_DELETE" d="databasesmanager"}" data-toggle="modal" data-key="{$LABEL}"><span class="glyphicon glyphicon-trash"></span></a>
                                 {/loop}
                                 {elseloop rel="auth-delete"}
-                                    <span class="btn btn-default disabled" title="{intl l="ACTION_DELETE" d="databasesmanager.ai"}"><span class="glyphicon glyphicon-trash"></span></span>
+                                    <span class="btn btn-default disabled" title="{intl l="ACTION_DELETE" d="databasesmanager"}"><span class="glyphicon glyphicon-trash"></span></span>
                                 {/elseloop}
                             </div>
                         </td>
@@ -212,7 +211,7 @@
                 {elseloop rel="databases.manager.config.loop"}
                     <tr>
                         <td class="text-center" colspan="6">
-                            {intl l="NO_CONFIG" d="databasesmanager.ai"}
+                            {intl l="NO_CONFIG" d="databasesmanager"}
                         </td>
                     </tr>
                 {/elseloop}
@@ -229,7 +228,7 @@
                         <div class="modal-header">
                             <button class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
                             <h3>
-                                {intl l="MODAL_TITLE_ADD" d="databasesmanager.ai"}
+                                {intl l="MODAL_TITLE_ADD" d="databasesmanager"}
                             </h3>
                         </div>
 
@@ -246,7 +245,7 @@
 
                                 {form_field form=$form field="label"}
                                     <div class="form-group{if $error} has-error{/if}">
-                                        <label class="control-label danger" for="{$label_attr.for}">{intl l=$label d="databasesmanager.ai"}</label>
+                                        <label class="control-label danger" for="{$label_attr.for}">{intl l=$label d="databasesmanager"}</label>
                                         <input id="{$label_attr.for}" class="form-control" type="text" name="{$name}" value="{$value}" {$attr}>
                                         {if $error}
                                             <div class="text-danger">
@@ -258,7 +257,7 @@
 
                                 {form_field form=$form field="host"}
                                     <div class="form-group{if $error} has-error{/if}">
-                                        <label class="control-label" for="{$label_attr.for}">{intl l=$label d="databasesmanager.ai"}</label>
+                                        <label class="control-label" for="{$label_attr.for}">{intl l=$label d="databasesmanager"}</label>
                                         <input id="{$label_attr.for}" class="form-control" type="text" name="{$name}" value="{$value}" {$attr}>
                                         {if $error}
                                             <div class="text-danger">
@@ -270,7 +269,7 @@
 
                                 {form_field form=$form field="user"}
                                     <div class="form-group{if $error} has-error{/if}">
-                                        <label class="control-label" for="{$label_attr.for}">{intl l=$label d="databasesmanager.ai"}</label>
+                                        <label class="control-label" for="{$label_attr.for}">{intl l=$label d="databasesmanager"}</label>
                                         <input id="{$label_attr.for}" class="form-control" type="text" name="{$name}" value="{$value}" {$attr}>
                                         {if $error}
                                             <div class="text-danger">
@@ -282,10 +281,10 @@
 
                                 {form_field form=$form field="pass"}
                                     <div class="form-group{if $error} has-error{/if}">
-                                        <label class="control-label" for="{$label_attr.for}">{intl l=$label d="databasesmanager.ai"}</label>
+                                        <label class="control-label" for="{$label_attr.for}">{intl l=$label d="databasesmanager"}</label>
                                         <div class="input-group">
                                             <input id="{$label_attr.for}" class="form-control" type="password" name="{$name}" value="{$value}" autocomplete="off" {$attr}>
-                                            <span class="input-group-addon btn btn-default" title="{intl l="PWD_ACTION_SHOW" d="databasesmanager.ai"}" data-pwd-action="form-show"><span class="glyphicon glyphicon-eye-open"></span></span>
+                                            <span class="input-group-addon btn btn-default" title="{intl l="PWD_ACTION_SHOW" d="databasesmanager"}" data-pwd-action="form-show"><span class="glyphicon glyphicon-eye-open"></span></span>
                                         </div>
                                         {if $error}
                                             <div class="text-danger">
@@ -297,7 +296,7 @@
 
                                 {form_field form=$form field="db_name"}
                                     <div class="form-group{if $error} has-error{/if}">
-                                        <label class="control-label" for="{$label_attr.for}">{intl l=$label d="databasesmanager.ai"}</label>
+                                        <label class="control-label" for="{$label_attr.for}">{intl l=$label d="databasesmanager"}</label>
                                         <input id="{$label_attr.for}" class="form-control" type="text" name="{$name}" value="{$value}" {$attr}>
                                         {if $error}
                                             <div class="text-danger">
@@ -327,7 +326,7 @@
                         <div class="modal-header">
                             <button class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
                             <h3>
-                                {intl l="MODAL_TITLE_EDIT" d="databasesmanager.ai"}
+                                {intl l="MODAL_TITLE_EDIT" d="databasesmanager"}
                             </h3>
                         </div>
 
@@ -344,7 +343,7 @@
 
                                 {form_field form=$form field="label"}
                                     <div class="form-group{if $error} has-error{/if}">
-                                        <label class="control-label danger" for="{$label_attr.for}">{intl l=$label d="databasesmanager.ai"}</label>
+                                        <label class="control-label danger" for="{$label_attr.for}">{intl l=$label d="databasesmanager"}</label>
                                         <input id="{$label_attr.for}" class="form-control" type="text" name="{$name}" value="{$value}" {$attr}>
                                         {if $error}
                                             <div class="text-danger">
@@ -356,7 +355,7 @@
 
                                 {form_field form=$form field="host"}
                                     <div class="form-group{if $error} has-error{/if}">
-                                        <label class="control-label" for="{$label_attr.for}">{intl l=$label d="databasesmanager.ai"}</label>
+                                        <label class="control-label" for="{$label_attr.for}">{intl l=$label d="databasesmanager"}</label>
                                         <input id="{$label_attr.for}" class="form-control" type="text" name="{$name}" value="{$value}" {$attr}>
                                         {if $error}
                                             <div class="text-danger">
@@ -368,7 +367,7 @@
 
                                 {form_field form=$form field="user"}
                                     <div class="form-group{if $error} has-error{/if}">
-                                        <label class="control-label" for="{$label_attr.for}">{intl l=$label d="databasesmanager.ai"}</label>
+                                        <label class="control-label" for="{$label_attr.for}">{intl l=$label d="databasesmanager"}</label>
                                         <input id="{$label_attr.for}" class="form-control" type="text" name="{$name}" value="{$value}" {$attr}>
                                         {if $error}
                                             <div class="text-danger">
@@ -380,10 +379,10 @@
 
                                 {form_field form=$form field="pass"}
                                     <div class="form-group{if $error} has-error{/if}">
-                                        <label class="control-label" for="{$label_attr.for}">{intl l=$label d="databasesmanager.ai"}</label>
+                                        <label class="control-label" for="{$label_attr.for}">{intl l=$label d="databasesmanager"}</label>
                                         <div class="input-group">
                                             <input id="{$label_attr.for}" class="form-control" type="password" name="{$name}" value="{$value}" autocomplete="off" {$attr}>
-                                            <span class="input-group-addon btn btn-default" title="{intl l="PWD_ACTION_SHOW" d="databasesmanager.ai"}" data-pwd-action="form-show"><span class="glyphicon glyphicon-eye-open"></span></span>
+                                            <span class="input-group-addon btn btn-default" title="{intl l="PWD_ACTION_SHOW" d="databasesmanager"}" data-pwd-action="form-show"><span class="glyphicon glyphicon-eye-open"></span></span>
                                         </div>
                                         {if $error}
                                             <div class="text-danger">
@@ -395,7 +394,7 @@
 
                                 {form_field form=$form field="db_name"}
                                     <div class="form-group{if $error} has-error{/if}">
-                                        <label class="control-label" for="{$label_attr.for}">{intl l=$label d="databasesmanager.ai"}</label>
+                                        <label class="control-label" for="{$label_attr.for}">{intl l=$label d="databasesmanager"}</label>
                                         <input id="{$label_attr.for}" class="form-control" type="text" name="{$name}" value="{$value}" {$attr}>
                                         {if $error}
                                             <div class="text-danger">
@@ -424,11 +423,11 @@
                     <div class="modal-header">
                         <button class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
                         <h3>
-                            {intl l="MODAL_TITLE_DELETE" d="databasesmanager.ai"}
+                            {intl l="MODAL_TITLE_DELETE" d="databasesmanager"}
                         </h3>
                     </div>
 
-                    <div id="databases-manager-delete-modal-body" class="modal-body" data-confirm-string="{intl l="MODAL_DELETE_CONFIRM" d="databasesmanager.ai"}">
+                    <div id="databases-manager-delete-modal-body" class="modal-body" data-confirm-string="{intl l="MODAL_DELETE_CONFIRM" d="databasesmanager"}">
                     </div>
 
                     <div class="modal-footer">

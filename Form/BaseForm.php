@@ -53,7 +53,7 @@ class BaseForm extends TheliaBaseForm
     {
         $this->formBuilder
             ->add('label', 'text', [
-                'label' => $this->translator->trans('FORM_LABEL_LABEL', [], DatabasesManager::DOMAIN_NAME . '.ai'),
+                'label' => $this->translator->trans('FORM_LABEL_LABEL', [], DatabasesManager::DOMAIN_NAME),
                 'label_attr' => [
                     'for' => $this->getName() . '-label'
                 ],
@@ -62,7 +62,7 @@ class BaseForm extends TheliaBaseForm
                 ]
             ])
             ->add('host', 'text', [
-                'label' => $this->translator->trans('FORM_LABEL_HOST', [], DatabasesManager::DOMAIN_NAME . '.ai'),
+                'label' => $this->translator->trans('FORM_LABEL_HOST', [], DatabasesManager::DOMAIN_NAME),
                 'label_attr' => [
                     'for' => $this->getName() . '-host'
                 ],
@@ -72,7 +72,7 @@ class BaseForm extends TheliaBaseForm
                 ]
             ])
             ->add('user', 'text', [
-                'label' => $this->translator->trans('FORM_LABEL_USER', [], DatabasesManager::DOMAIN_NAME . '.ai'),
+                'label' => $this->translator->trans('FORM_LABEL_USER', [], DatabasesManager::DOMAIN_NAME),
                 'label_attr' => [
                     'for' => $this->getName() . '-user'
                 ],
@@ -81,13 +81,13 @@ class BaseForm extends TheliaBaseForm
                 ]
             ])
             ->add('pass', 'text', [
-                'label' => $this->translator->trans('FORM_LABEL_PASS', [], DatabasesManager::DOMAIN_NAME . '.ai'),
+                'label' => $this->translator->trans('FORM_LABEL_PASS', [], DatabasesManager::DOMAIN_NAME),
                 'label_attr' => [
                     'for' => $this->getName() . '-pass'
                 ]
             ])
             ->add('db_name', 'text', [
-                'label' => $this->translator->trans('FORM_LABEL_DB_NAME', [], DatabasesManager::DOMAIN_NAME . '.ai'),
+                'label' => $this->translator->trans('FORM_LABEL_DB_NAME', [], DatabasesManager::DOMAIN_NAME),
                 'label_attr' => [
                     'for' => $this->getName() . '-db_name'
                 ],

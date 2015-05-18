@@ -1,4 +1,6 @@
 # 1.2.0
+- Require Thelia 2.1.0.
+- Use hooks instead of admin includes for module configuration
 - Add environment dependent configuration
 
 # 1.1.2

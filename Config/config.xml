@@ -19,6 +19,15 @@
         </service>
     </services>
 
+    <hooks>
+        <hook id="databases.manager.config.hook" class="DatabasesManager\Hook\ConfigurationHook" scope="request">
+            <argument type="string">%kernel.environment%</argument>
+
+            <tag name="hook.event_listener" event="module.configuration" type="backoffice" />
+            <tag name="hook.event_listener" event="module.config-js" type="backoffice" />
+        </hook>
+    </hooks>
+
     <commands>
         <command class="DatabasesManager\Command\GenerateModelCommand" />
         <command class="DatabasesManager\Command\GenerateSqlCommand" />

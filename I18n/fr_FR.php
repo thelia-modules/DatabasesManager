@@ -22,13 +22,13 @@
 /**********************************************************************************/
 
 /**
- * Locale for french - FRance
+ * Locale for french - France
  *
  * @author Jérôme Billiras <jerome DOT billiras PLUS github AT gmail DOT com>
  */
 return [
     'SHARED_VIEW_TITLE' => 'Configuration partagée des bases de données.',
-    'ENV_VIEW_TITLE' => 'Configuration des bases de données de l\'environnement courant.',
+    'ENV_VIEW_TITLE' => 'Configuration des bases de données de l\'environnement "%env".',
 
     'NO_CONFIG' => 'Aucune configuration',
 
