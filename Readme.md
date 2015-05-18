@@ -63,16 +63,23 @@ and
 php Thelia module:generate:sql <moduleName>
 ```
 
-always work as expected but now handles `databases` and multiples `database` nodes in `schema.xml` files. These commands also add an empty database configuration for every unkown database name in configuration file (e.g. `anotherDB` in previous `schema.xml`).
+always work as expected but now handles `databases` and multiples `database` nodes in `schema.xml` files. These commands also add an empty database configuration for every unkown database name in configuration file (e.g. : `anotherDB` in previous `schema.xml`).
 
 ```
 php Thelia module:schema:recovery <moduleName>
 ```
 
-can recover `schema.xml` if unexpected exit happens during any of two previous command (e.g. `Ctrl + C`).
+can recover `schema.xml` if unexpected exit happens during any of two previous command (e.g. : `Ctrl + C`).
 
 ### 3. Configuration
 
-Access to databases configuration by clicking on `Configure` from backoffice module manager. You can now add/edit/delete databases configurations. <br />
-**But be careful**, configuration labels have to be the same as `schema.xml` `database ` nodes name, otherwise, models will not be able to find connection to their databases.
+Access to databases configuration by clicking on `Configure` from backoffice module manager. You can now add/edit/delete databases configurations.  
+**But be careful**, configuration labels have to be the same as `schema.xml` `database` nodes name, otherwise, models will not be able to find connection to their databases.
 
+You can define database configuration for your current environment (`prod` by default and `dev` when accessing with `index_dev.php`). Environment configuration with the same label as shared configuration overwrite it.  
+It's can be useful if you don't want that `dev` environment access same external database as `prod` environment.
+
+### 4. Overwite Thelia default configuration
+
+**This feature seems to work, but it's not tested.**  
+If you want connect to another Thelia database than the default one, labeled it `thelia`. By this way, you can have a production database and a development database.
