@@ -1,3 +1,6 @@
+# 1.2.1
+- BUGFIX: Define new route id for environment routes
+
 # 1.2.0
 - Require Thelia 2.1.0.
 - Use hooks instead of admin includes for module configuration
