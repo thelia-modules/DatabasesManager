@@ -67,7 +67,7 @@ class ConfigurationHandler
      *
      * @return array
      */
-    public function parse($useEnvironment = null)
+    public function parse($useEnvironment = false)
     {
         if ($useEnvironment) {
             $configuration = Yaml::parse($this->envConfigurationPath);
@@ -84,7 +84,7 @@ class ConfigurationHandler
      * @param array $databasesConfig
      * @param boolean $useEnvironment Use current environment
      */
-    public function dump(array $databasesConfig, $useEnvironment = null)
+    public function dump(array $databasesConfig, $useEnvironment = false)
     {
         $yml = Yaml::dump($databasesConfig);
 

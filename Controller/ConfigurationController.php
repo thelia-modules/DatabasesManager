@@ -41,24 +41,32 @@ class ConfigurationController extends BaseAdminController
     /**
      * Handle databases manager add config request
      *
+     * @param boolean $useEnvironment Use current environment for configuration
+     *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Thelia\Core\HttpFoundation\Response
      */
-    public function addConfigAction()
+    public function addConfigAction($useEnvironment = false)
     {
         $authFail = $this->checkAuth(AdminResources::MODULE, DatabasesManager::DOMAIN_NAME, AccessManager::CREATE);
         if ($authFail !== null) {
             return $authFail;
         }
 
+        if ($useEnvironment) {
+            $formName = 'databases.manager.form.add.env';
+        } else {
+            $formName = 'databases.manager.form.add.shared';
+        }
+
         /** @var \DatabasesManager\Form\AddForm $form */
-        $form = $this->createForm('databases.manager.form.add');
+        $form = $this->createForm($formName);
         try {
             $this->validateForm($form);
 
             /** @var \DatabasesManager\Handler\ConfigurationHandler $configHandler */
             $configHandler = $this->container->get('databases.manager.config.handler');
 
-            $databasesConfiguration = $configHandler->parse();
+            $databasesConfiguration = $configHandler->parse($useEnvironment);
 
             $newConfigKey = $form->getForm()->get('label')->getData();
             if (array_key_exists($newConfigKey, $databasesConfiguration)) {
@@ -80,7 +88,7 @@ class ConfigurationController extends BaseAdminController
                 'db_name' => $form->getForm()->get('db_name')->getData()
             ];
 
-            $configHandler->dump($databasesConfiguration);
+            $configHandler->dump($databasesConfiguration, $useEnvironment);
 
             $response = $this->getRedirectToModuleConfiguration();
         } catch (FormValidationException $exception) {
@@ -113,24 +121,32 @@ class ConfigurationController extends BaseAdminController
     /**
      * Handle databases manager edit config request
      *
+     * @param boolean $useEnvironment Use current environment for configuration
+     *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Thelia\Core\HttpFoundation\Response
      */
-    public function editConfigAction()
+    public function editConfigAction($useEnvironment = false)
     {
         $authFail = $this->checkAuth(AdminResources::MODULE, DatabasesManager::DOMAIN_NAME, AccessManager::CREATE);
         if ($authFail !== null) {
             return $authFail;
         }
 
+        if ($useEnvironment) {
+            $formName = 'databases.manager.form.edit.env';
+        } else {
+            $formName = 'databases.manager.form.edit.shared';
+        }
+
         /** @var \DatabasesManager\Form\EditForm $form */
-        $form = $this->createForm('databases.manager.form.edit');
+        $form = $this->createForm($formName);
         try {
             $this->validateForm($form);
 
             /** @var \DatabasesManager\Handler\ConfigurationHandler $configHandler */
             $configHandler = $this->container->get('databases.manager.config.handler');
 
-            $databasesConfiguration = $configHandler->parse();
+            $databasesConfiguration = $configHandler->parse($useEnvironment);
 
             $originalConfigKey = $form->getForm()->get('original_label')->getData();
             if (!array_key_exists($originalConfigKey, $databasesConfiguration)) {
@@ -166,7 +182,7 @@ class ConfigurationController extends BaseAdminController
                 'db_name' => $form->getForm()->get('db_name')->getData()
             ];
 
-            $configHandler->dump($databasesConfiguration);
+            $configHandler->dump($databasesConfiguration, $useEnvironment);
 
             $response = $this->getRedirectToModuleConfiguration();
         } catch (FormValidationException $exception) {
@@ -199,11 +215,12 @@ class ConfigurationController extends BaseAdminController
     /**
      * Handle databases manager delete config request
      *
-     * @param string $configKey Database configuration key
+     * @param string  $configKey      Database configuration key
+     * @param boolean $useEnvironment Use current environment for configuration
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Thelia\Core\HttpFoundation\Response
      */
-    public function deleteConfigAction($configKey)
+    public function deleteConfigAction($configKey, $useEnvironment = false)
     {
         $authFail = $this->checkAuth(AdminResources::MODULE, DatabasesManager::DOMAIN_NAME, AccessManager::DELETE);
         if ($authFail !== null) {
@@ -213,12 +230,12 @@ class ConfigurationController extends BaseAdminController
         /** @var \DatabasesManager\Handler\ConfigurationHandler $configHandler */
         $configHandler = $this->container->get('databases.manager.config.handler');
 
-        $databasesConfiguration = $configHandler->parse();
+        $databasesConfiguration = $configHandler->parse($useEnvironment);
 
         if (array_key_exists($configKey, $databasesConfiguration)) {
             unset($databasesConfiguration[$configKey]);
 
-            $configHandler->dump($databasesConfiguration);
+            $configHandler->dump($databasesConfiguration, $useEnvironment);
 
             $this->getSession()->getFlashBag()->add(
                 'databasesmanager.delete.success',

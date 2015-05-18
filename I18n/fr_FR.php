@@ -39,6 +39,8 @@ return [
     'TABLE_HEAD_DB_NAME' => 'Nom de la base',
     'TABLE_HEAD_ACTION' => 'Action',
 
+    'ADD_BUTTON' => 'Ajouter une configuration',
+
     'PWDS_ACTION_HIDE' => 'Masquer les mots de passe',
     'PWD_ACTION_SHOW' => 'Afficher le mot de passe',
     'PWD_ACTION_HIDE' => 'Masquer le mot de passe',
@@ -52,12 +54,15 @@ return [
     'FORM_LABEL_PASS' => 'Mot de passe',
     'FORM_LABEL_DB_NAME' => 'Nom de la base',
 
-    'MODAL_TITLE_ADD' => 'Ajouter une configuration de base de données',
+    'MODAL_TITLE_ADD_SHARED' => 'Ajouter une configuration partagée de base de données',
+    'MODAL_TITLE_ADD_ENV' => 'Ajouter une configuration de base de données sur l\'environnement "%env"',
     'CONFIG_EXISTS' => 'Une configuration de base de données avec le libellé "%label" existe déjà. Utiliser l\'édition ou modifier ce libellé.',
 
-    'MODAL_TITLE_EDIT' => 'Editer une configuration de base de données',
+    'MODAL_TITLE_EDIT_SHARED' => 'Editer une configuration partagée de base de données',
+    'MODAL_TITLE_EDIT_ENV' => 'Editer une configuration de base de données sur l\'environnement "%env"',
 
-    'MODAL_TITLE_DELETE' => 'Supprimer une configuration de base de données',
+    'MODAL_TITLE_DELETE_SHARED' => 'Supprimer une configuration partagée de base de données',
+    'MODAL_TITLE_DELETE_ENV' => 'Supprimer une configuration de base de données sur l\'environnement "%env"',
     'MODAL_DELETE_CONFIRM' => 'Voulez-vous vraiment supprimer la configuration de base de données &quot;%label&quot;&nbsp;?',
     'CONFIG_DOES_NOT_EXIST' => 'La configuration de la base de données avec le libellé "%label" n\'existe pas.',
     'CONFIG_DELETED' => 'La configuration de la base de données avec le libellé "%label" a été supprimée.',

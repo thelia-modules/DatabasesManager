@@ -5,8 +5,10 @@
     </loops>
 
     <forms>
-        <form name="databases.manager.form.add" class="DatabasesManager\Form\AddForm" />
-        <form name="databases.manager.form.edit" class="DatabasesManager\Form\EditForm" />
+        <form name="databases.manager.form.add.shared" class="DatabasesManager\Form\AddForm" />
+        <form name="databases.manager.form.add.env" class="DatabasesManager\Form\AddFormEnv" />
+        <form name="databases.manager.form.edit.shared" class="DatabasesManager\Form\EditForm" />
+        <form name="databases.manager.form.edit.env" class="DatabasesManager\Form\EditFormEnv" />
     </forms>
 
     <services>

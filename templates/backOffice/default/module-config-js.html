@@ -31,48 +31,80 @@
         }
     }
 
-    $(function(){
-        var databasesManagerConfigList, deleteValidButton;
-
-        databasesManagerConfigList = $('#databases-manager-config-list');
-        deleteValidButton = $('#databases-manager-delete-valid');
-
-        databasesManagerConfigList.on('click', '[href="#delete-database-config-dialog"]', function(clickEvent){
+    function databasesManagerDeleteHandler(configList, hrefAttr, modalBodyId, modalValidBtn)
+    {
+        configList.on('click', '[href="#' + hrefAttr + '"]', function(clickEvent){
             var clickedElement, modalBody;
 
             clickedElement = $(clickEvent.currentTarget);
-            modalBody = $('#databases-manager-delete-modal-body');
+            modalBody = $('#' + modalBodyId);
 
             modalBody.html(modalBody.data('confirm-string').replace('%label', clickedElement.data('key')));
-            deleteValidButton.data('key', clickedElement.data('key'));
+            modalValidBtn.data('key', clickedElement.data('key'));
         });
 
-        deleteValidButton.click(function(){
-            window.location.href = deleteValidButton.data('href').replace('%label', deleteValidButton.data('key'));
+        modalValidBtn.click(function(){
+            window.location.href = modalValidBtn.data('href').replace('%label', modalValidBtn.data('key'));
         });
+    }
 
-        databasesManagerConfigList.on('click', '[href="#edit-database-config-dialog"]', function(clickEvent){
+    function databasesManagerEditFiller(configList, hrefAttr)
+    {
+        configList.on('click', '[href="#' + hrefAttr + '"]', function(clickEvent){
             var clickedElement, configData;
 
             clickedElement = $(clickEvent.currentTarget);
             configData = clickedElement.data('data');
 
-            $('#edit-database-config-dialog').find('input').each(function(index, element){
+            $('#' + hrefAttr).find('input').each(function(index, element){
                 var key;
 
                 element = $(element);
-                key = element.prop('name').replace(/^databases_manager_configuration_form_edit\[(.*?)\]$/, '$1');
+                key = element.prop('name').replace(/^databases_manager_configuration_form_edit(?:_env)?\[(.*?)\]$/, '$1');
 
                 if (configData[key]) {
                     element.val(configData[key]);
                 }
             });
         });
+    }
 
-        databasesManagerConfigList.add('#add-database-config-dialog').add('#edit-database-config-dialog').on(
-            'click',
-            '[data-pwd-action]',
-            function(clickEvent)
+    $(function(){
+        var databasesManagerConfigLists;
+
+        databasesManagerConfigLists = $('.js-databases-manager-config-list');
+
+        databasesManagerDeleteHandler(
+            databasesManagerConfigLists,
+            'delete-database-shared-config-dialog',
+            'databases-manager-delete-shared-modal-body',
+            $('#dababases-manager-delete-shared-valid')
+        );
+        databasesManagerDeleteHandler(
+            databasesManagerConfigLists,
+            'delete-database-env-config-dialog',
+            'databases-manager-delete-env-modal-body',
+            $('#dababases-manager-delete-env-valid')
+        );
+
+        databasesManagerEditFiller(
+            databasesManagerConfigLists,
+            'edit-database-shared-config-dialog'
+        );
+        databasesManagerEditFiller(
+            databasesManagerConfigLists,
+            'edit-database-env-config-dialog'
+        );
+
+        databasesManagerConfigLists
+            .add('#add-database-shared-config-dialog')
+            .add('#add-database-env-config-dialog')
+            .add('#edit-database-shared-config-dialog')
+            .add('#edit-database-env-config-dialog')
+            .on(
+                'click',
+                '[data-pwd-action]',
+                function(clickEvent)
         {
             var button, icon, cell;
 
@@ -104,7 +136,7 @@
                     break;
 
                 case 'hideAll':
-                    databasesManagerConfigList.find('[data-pwd-action="hide"]').click();
+                    databasesManagerConfigLists.find('[data-pwd-action="hide"]').click();
                     break;
 
                 case 'form-show':
@@ -128,6 +160,6 @@
                     break;
             }
         });
-        databasesManagerConfigList.find('[data-pwd-view=clear]').removeClass('hidden').hide();
+        databasesManagerConfigLists.find('[data-pwd-view=clear]').removeClass('hidden').hide();
     });
 </script>

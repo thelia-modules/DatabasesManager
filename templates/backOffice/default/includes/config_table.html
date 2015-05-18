@@ -1,0 +1,91 @@
+{$currentEnv=$currentEnv|default:false}
+
+<div class="row">
+    <div class="col-xs-12 table-responsive">
+        <table class="table table-hover js-databases-manager-config-list">
+            <thead>
+                <tr>
+                    <th>
+                        {intl l="TABLE_HEAD_LABEL" d="databasesmanager"}
+                    </th>
+                    <th>
+                        {intl l="TABLE_HEAD_HOST" d="databasesmanager"}
+                    </th>
+                    <th>
+                        {intl l="TABLE_HEAD_USER" d="databasesmanager"}
+                    </th>
+                    <th>
+                        {intl l="TABLE_HEAD_PASS" d="databasesmanager"}
+
+                        <div class="btn-group btn-group-xs pull-right">
+                            <span class="btn btn-default" title="{intl l="PWDS_ACTION_HIDE" d="databasesmanager"}" data-pwd-action="hideAll"><span class="glyphicon glyphicon-eye-close"></span></span>
+                        </div>
+                    </th>
+                    <th>
+                        {intl l="TABLE_HEAD_DB_NAME" d="databasesmanager"}
+                    </th>
+                    <th>
+                        {intl l="TABLE_HEAD_ACTION" d="databasesmanager"}
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {if $currentEnv}
+                    {$editId='edit-database-env-config-dialog'}
+                    {$deleteId='delete-database-env-config-dialog'}
+                {else}
+                    {$editId='edit-database-shared-config-dialog'}
+                    {$deleteId='delete-database-shared-config-dialog'}
+                {/if}
+                {loop type="databases.manager.config.loop" name="databases.manager.config.loop" current_env=$currentEnv}
+                    <tr>
+                        <td>
+                            {$LABEL}
+                        </td>
+                        <td>
+                            {$HOST}
+                        </td>
+                        <td>
+                            {$USER}
+                        </td>
+                        <td>
+                            <span class="hidden" data-pwd-view="clear">{$PASS}</span>
+                            <span data-pwd-view="shadow">########</span>
+
+                            <div class="btn-group btn-group-xs pull-right">
+                                <span class="btn btn-default" title="{intl l="PWD_ACTION_SHOW" d="databasesmanager"}" data-pwd-action="show"><span class="glyphicon glyphicon-eye-open"></span></span>
+                            </div>
+                        </td>
+                        <td>
+                            {$DB_NAME}
+                        </td>
+                        <td>
+                            <div class="btn-group btn-group-xs">
+                                {loop type="auth" name="auth-edit" role="ADMIN" resource="admin.module" module="databasesmanager" access="UPDATE"}
+                                    <a class="btn btn-default" href="#{$editId}" title="{intl l="ACTION_EDIT" d="databasesmanager"}" data-toggle="modal" data-key="{$LABEL}" data-data="{$JSON}"><span class="glyphicon glyphicon-edit"></span></a>
+                                {/loop}
+                                {elseloop rel="auth-edit"}
+                                    <span class="btn btn-default disabled" title="{intl l="ACTION_EDIT" d="databasesmanager"}"><span class="glyphicon glyphicon-edit"></span></span>
+                                {/elseloop}
+
+                                {loop type="auth" name="auth-delete" role="ADMIN" resource="admin.module" module="databasesmanager" access="DELETE"}
+                                    <a class="btn btn-default" href="#{$deleteId}" title="{intl l="ACTION_DELETE" d="databasesmanager"}" data-toggle="modal" data-key="{$LABEL}"><span class="glyphicon glyphicon-trash"></span></a>
+                                {/loop}
+                                {elseloop rel="auth-delete"}
+                                    <span class="btn btn-default disabled" title="{intl l="ACTION_DELETE" d="databasesmanager"}"><span class="glyphicon glyphicon-trash"></span></span>
+                                {/elseloop}
+                            </div>
+                        </td>
+                    </tr>
+                {/loop}
+                {elseloop rel="databases.manager.config.loop"}
+                    <tr>
+                        <td class="text-center" colspan="6">
+                            {intl l="NO_CONFIG" d="databasesmanager"}
+                        </td>
+                    </tr>
+                {/elseloop}
+            </tbody>
+        </table>
+    </div>
+</div>

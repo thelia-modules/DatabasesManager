@@ -3,11 +3,26 @@
     <route id="databases.manager.admin.config.add" path="/admin/module/DatabasesManager/add" methods="post">
         <default key="_controller">DatabasesManager:Configuration:addConfig</default>
     </route>
+    <route id="databases.manager.admin.config.add" path="/admin/module/DatabasesManager/add/env" methods="post">
+        <default key="_controller">DatabasesManager:Configuration:addConfig</default>
+        <default key="useEnvironment">true</default>
+    </route>
+
     <route id="databases.manager.admin.config.edit" path="/admin/module/DatabasesManager/edit" methods="post">
         <default key="_controller">DatabasesManager:Configuration:editConfig</default>
     </route>
+    <route id="databases.manager.admin.config.edit" path="/admin/module/DatabasesManager/edit/env" methods="post">
+        <default key="_controller">DatabasesManager:Configuration:editConfig</default>
+        <default key="useEnvironment">true</default>
+    </route>
+
     <route id="databases.manager.admin.config.delete" path="/admin/module/DatabasesManager/delete/{configKey}" methods="get">
         <default key="_controller">DatabasesManager:Configuration:deleteConfig</default>
+        <requirement key="configKey">.*</requirement>
+    </route>
+    <route id="databases.manager.admin.config.delete" path="/admin/module/DatabasesManager/delete/{configKey}/env" methods="get">
+        <default key="_controller">DatabasesManager:Configuration:deleteConfig</default>
+        <default key="useEnvironment">true</default>
         <requirement key="configKey">.*</requirement>
     </route>
 </routes>

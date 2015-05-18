@@ -1,0 +1,39 @@
+{$currentEnv=$currentEnv|default:false}
+{$env=$env|default:false}
+
+{if $currentEnv}
+    {$dialogId='delete-database-env-config-dialog'}
+    {$modalTitle='MODAL_TITLE_DELETE_ENV'}
+    {$bodyId='databases-manager-delete-env-modal-body'}
+    {$buttonId='dababases-manager-delete-env-valid'}
+    {$url={url path='/admin/module/DatabasesManager/delete/%label/env'}}
+{else}
+    {$dialogId='delete-database-shared-config-dialog'}
+    {$modalTitle='MODAL_TITLE_DELETE_SHARED'}
+    {$bodyId='databases-manager-delete-shared-modal-body'}
+    {$buttonId='dababases-manager-delete-shared-valid'}
+    {$url={url path='/admin/module/DatabasesManager/delete/%label'}}
+{/if}
+
+{loop type="auth" name="auth-delete" role="ADMIN" resource="admin.module" module="databasesmanager" access="DELETE"}
+    <div id="{$dialogId}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+                    <h3>
+                        {intl l=$modalTitle d="databasesmanager" env=$env}
+                    </h3>
+                </div>
+
+                <div id="{$bodyId}" class="modal-body" data-confirm-string="{intl l="MODAL_DELETE_CONFIRM" d="databasesmanager"}">
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-default" type="button" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> {intl l="Cancel"}</button>
+                    <button id="{$buttonId}" class="btn btn-primary" type="button" data-href="{$url}"><span class="glyphicon glyphicon-trash"></span> {intl l="Delete"}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{/loop}
