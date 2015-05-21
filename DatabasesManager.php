@@ -23,6 +23,9 @@
 
 namespace DatabasesManager;
 
+use Propel\Runtime\Connection\ConnectionInterface;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Finder\Finder;
 use Thelia\Module\BaseModule;
 
 /**
@@ -37,4 +40,25 @@ class DatabasesManager extends BaseModule
 
     /** @var string */
     const DOMAIN_NAME = 'databasesmanager';
+
+    public function update($currentVersion, $newVersion, ConnectionInterface $con)
+    {
+        // Move configuration files
+        if (version_compare($currentVersion, '1.2.2', '<')) {
+            $fileSystem = new Filesystem;
+            $finder = (new Finder)
+                ->name('#^databases(?:_.*?)?\.yml$#')
+                ->in(THELIA_MODULE_DIR . self::MODULE_CODE . DS . 'Config')
+            ;
+
+            /** @var \Symfony\Component\Finder\SplFileInfo $configFile */
+            foreach ($finder as $configFile) {
+                $fileSystem->rename(
+                    $configFile->getPathname(),
+                    THELIA_LOCAL_DIR . self::MODULE_CODE . DS . $configFile->getFilename(),
+                    true
+                );
+            }
+        }
+    }
 }

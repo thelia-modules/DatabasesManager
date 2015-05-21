@@ -23,6 +23,7 @@
 
 namespace DatabasesManager\Handler;
 
+use DatabasesManager\DatabasesManager;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Yaml\Yaml;
 
@@ -46,12 +47,13 @@ class ConfigurationHandler
      */
     public function __construct($environment = null)
     {
-        $this->configurationPath = THELIA_MODULE_DIR . 'DatabasesManager' . DS . 'Config' . DS . 'databases.yml';
-        $this->envConfigurationPath = THELIA_MODULE_DIR . 'DatabasesManager' . DS . 'Config' . DS
+        $this->configurationPath = THELIA_LOCAL_DIR . DatabasesManager::MODULE_CODE . DS. 'databases.yml';
+        $this->envConfigurationPath = THELIA_LOCAL_DIR . DatabasesManager::MODULE_CODE . DS
             . 'databases_' . $environment . '.yml'
         ;
 
         $fileSystem = new Filesystem;
+        $fileSystem->mkdir(THELIA_LOCAL_DIR . DatabasesManager::MODULE_CODE);
         if (!$fileSystem->exists($this->configurationPath)) {
             $fileSystem->touch($this->configurationPath);
         }
