@@ -1,3 +1,6 @@
+# 1.2.2
+- Move databases configuration files in `THELIA_LOCAL_DIR . 'DatabasesManager'`. That allows to keep configurations over `composer` updates.
+
 # 1.2.1
 - BUGFIX: Define new route id for environment routes
 
