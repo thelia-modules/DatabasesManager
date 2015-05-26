@@ -1,3 +1,6 @@
+# 1.3.0
+- Change license
+
 # 1.2.2
 - Move databases configuration files in `THELIA_LOCAL_DIR . 'DatabasesManager'`. That allows to keep configurations over `composer` updates.
 
