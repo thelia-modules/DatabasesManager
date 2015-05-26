@@ -1,7 +1,7 @@
 {
     "name": "bilhackmac/databases-manager-module",
     "type": "thelia-module",
-    "license": "GPL-3.0+",
+    "license": "LGPL-3.0+",
     "description": "Allows managing multiple connections to databases",
     "authors": [
         {
@@ -14,5 +14,9 @@
     },
     "extra": {
         "installer-name": "DatabasesManager"
+    },
+    "support": {
+        "source": "https://github.com/thelia-modules/DatabasesManager",
+        "issues": "https://github.com/thelia-modules/DatabasesManager/issues"
     }
 }
