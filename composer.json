@@ -16,7 +16,7 @@
         "installer-name": "DatabasesManager"
     },
     "support": {
-        "source": "https://github.com/thelia-modules/DatabasesManager",
+        "source": "https://github.com/thelia-modules/DatabasesManager/releases",
         "issues": "https://github.com/thelia-modules/DatabasesManager/issues"
     }
 }
