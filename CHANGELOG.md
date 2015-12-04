@@ -1,3 +1,6 @@
+#1.3.1
+- Fix compatibility with BaseModuleInterface
+
 # 1.3.0
 - Change license
 
