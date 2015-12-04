@@ -41,7 +41,7 @@ class DatabasesManager extends BaseModule
     /** @var string */
     const DOMAIN_NAME = 'databasesmanager';
 
-    public function update($currentVersion, $newVersion, ConnectionInterface $con)
+    public function update($currentVersion, $newVersion, ConnectionInterface $con = null)
     {
         // Move configuration files
         if (version_compare($currentVersion, '1.2.2', '<')) {
