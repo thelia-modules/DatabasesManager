@@ -28,6 +28,8 @@ use Propel\Runtime\Connection\ConnectionManagerSingle;
 use Propel\Runtime\Propel;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Thelia\Core\Event\TheliaEvents;
+use Thelia\Config\DefinePropel;
+use Thelia\Config\DatabaseConfiguration;
 
 /**
  * Class Subscriber
@@ -72,11 +74,23 @@ class Subscriber implements EventSubscriberInterface
             }
 
             $manager = new ConnectionManagerSingle;
-            $manager->setConfiguration([
-                'dsn' => 'mysql:host=' . $databaseConfig['host'] . ';dbname=' . $databaseConfig['db_name'],
-                'user' => $databaseConfig['user'],
-                'password' => $databaseConfig['pass'],
-            ]);
+						$propelConf = [
+							'database' => [
+								'connection' => [
+									'driver' => 'mysql',
+									'dsn' => 'mysql:host=' . $databaseConfig['host'] . ';dbname=' . $databaseConfig['db_name'],
+									'user' => $databaseConfig['user'],
+									'password' => $databaseConfig['pass']
+								]
+							]
+						];
+            $definePropel = new DefinePropel(
+            	new DatabaseConfiguration(),
+            	$propelConf,
+            	array()
+            	);
+            $config = $definePropel->getConfig();
+            $manager->setConfiguration($config);
             $manager->setName($label);
 
             $serviceContainer->setConnectionManager($label, $manager);
