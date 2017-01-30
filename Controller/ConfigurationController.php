@@ -86,7 +86,7 @@ class ConfigurationController extends BaseAdminController
                 'user' => $form->getForm()->get('user')->getData(),
                 'pass' => $form->getForm()->get('pass')->getData(),
                 'db_name' => $form->getForm()->get('db_name')->getData(),
-                'db_charset' => ''
+                'db_charset' => $form->getForm()->get('db_charset')->getData()
             ];
 
             $configHandler->dump($databasesConfiguration, $useEnvironment);
