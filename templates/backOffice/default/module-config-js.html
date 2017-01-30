@@ -57,7 +57,7 @@
             clickedElement = $(clickEvent.currentTarget);
             configData = clickedElement.data('data');
 
-            $('#' + hrefAttr).find('input').each(function(index, element){
+            $('#' + hrefAttr).find('input, select').each(function(index, element){
                 var key;
 
                 element = $(element);

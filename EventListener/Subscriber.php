@@ -28,8 +28,6 @@ use Propel\Runtime\Connection\ConnectionManagerSingle;
 use Propel\Runtime\Propel;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Thelia\Core\Event\TheliaEvents;
-use Thelia\Config\DefinePropel;
-use Thelia\Config\DatabaseConfiguration;
 
 /**
  * Class Subscriber
@@ -39,9 +37,14 @@ use Thelia\Config\DatabaseConfiguration;
 class Subscriber implements EventSubscriberInterface
 {
     /**
+     * @var \DatabasesManager\Handler\ConfigurationHandler Configuration handler
+     */
+    protected $configHandler;
+
+    /**
      * Class constructor
      *
-     * @param \DatabasesManager\Handler\ConfigurationHandler $configurationHandler DatabasesManager config handler
+     * @param \DatabasesManager\Handler\ConfigurationHandler $configurationHandler Configuration handler
      */
     public function __construct(ConfigurationHandler $configurationHandler)
     {
@@ -73,24 +76,22 @@ class Subscriber implements EventSubscriberInterface
                 continue;
             }
 
+            $configuration = [
+                'dsn' => 'mysql:host=' . $databaseConfig['host'] . ';dbname=' . $databaseConfig['db_name'],
+                'user' => $databaseConfig['user'],
+                'password' => $databaseConfig['pass'],
+                'classname' => '\\Propel\\Runtime\\Connection\\ConnectionWrapper',
+            ];
+            if (!empty($databaseConfig['db_charset'])) {
+                $configuration['options'] =  [
+                    \PDO::MYSQL_ATTR_INIT_COMMAND => [
+                        'value' => 'SET NAMES \'' . $databaseConfig['db_charset'] . '\''
+                    ]
+                ];
+            }
+
             $manager = new ConnectionManagerSingle;
-						$propelConf = [
-							'database' => [
-								'connection' => [
-									'driver' => 'mysql',
-									'dsn' => 'mysql:host=' . $databaseConfig['host'] . ';dbname=' . $databaseConfig['db_name'],
-									'user' => $databaseConfig['user'],
-									'password' => $databaseConfig['pass']
-								]
-							]
-						];
-            $definePropel = new DefinePropel(
-            	new DatabaseConfiguration(),
-            	$propelConf,
-            	array()
-            	);
-            $config = $definePropel->getConfig();
-            $manager->setConfiguration($config);
+            $manager->setConfiguration($configuration);
             $manager->setName($label);
 
             $serviceContainer->setConnectionManager($label, $manager);

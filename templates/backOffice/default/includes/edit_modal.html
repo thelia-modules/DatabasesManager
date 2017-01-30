@@ -61,7 +61,7 @@
                             {form_field form=$form field="label"}
                                 <div class="form-group{if $error} has-error{/if}">
                                     <label class="control-label danger" for="{$label_attr.for}">{intl l=$label d="databasesmanager"}</label>
-                                    <input id="{$label_attr.for}" class="form-control" type="text" name="{$name}" value="{$value}" {$attr}>
+                                    <input id="{$label_attr.for}" class="form-control" type="text" name="{$name}" value="{$value}">
                                     {if $error}
                                         <div class="text-danger">
                                             {$message}
@@ -73,7 +73,7 @@
                             {form_field form=$form field="host"}
                                 <div class="form-group{if $error} has-error{/if}">
                                     <label class="control-label" for="{$label_attr.for}">{intl l=$label d="databasesmanager"}</label>
-                                    <input id="{$label_attr.for}" class="form-control" type="text" name="{$name}" value="{$value}" {$attr}>
+                                    <input id="{$label_attr.for}" class="form-control" type="text" name="{$name}" value="{$value}">
                                     {if $error}
                                         <div class="text-danger">
                                             {$message}
@@ -85,7 +85,7 @@
                             {form_field form=$form field="user"}
                                 <div class="form-group{if $error} has-error{/if}">
                                     <label class="control-label" for="{$label_attr.for}">{intl l=$label d="databasesmanager"}</label>
-                                    <input id="{$label_attr.for}" class="form-control" type="text" name="{$name}" value="{$value}" {$attr}>
+                                    <input id="{$label_attr.for}" class="form-control" type="text" name="{$name}" value="{$value}">
                                     {if $error}
                                         <div class="text-danger">
                                             {$message}
@@ -98,7 +98,7 @@
                                 <div class="form-group{if $error} has-error{/if}">
                                     <label class="control-label" for="{$label_attr.for}">{intl l=$label d="databasesmanager"}</label>
                                     <div class="input-group">
-                                        <input id="{$label_attr.for}" class="form-control" type="password" name="{$name}" value="{$value}" autocomplete="off" {$attr}>
+                                        <input id="{$label_attr.for}" class="form-control" type="password" name="{$name}" value="{$value}" autocomplete="off">
                                         <span class="input-group-addon btn btn-default" title="{intl l="PWD_ACTION_SHOW" d="databasesmanager"}" data-pwd-action="form-show"><span class="glyphicon glyphicon-eye-open"></span></span>
                                     </div>
                                     {if $error}
@@ -112,12 +112,23 @@
                             {form_field form=$form field="db_name"}
                                 <div class="form-group{if $error} has-error{/if}">
                                     <label class="control-label" for="{$label_attr.for}">{intl l=$label d="databasesmanager"}</label>
-                                    <input id="{$label_attr.for}" class="form-control" type="text" name="{$name}" value="{$value}" {$attr}>
+                                    <input id="{$label_attr.for}" class="form-control" type="text" name="{$name}" value="{$value}">
                                     {if $error}
                                         <div class="text-danger">
                                             {$message}
                                         </div>
                                     {/if}
+                                </div>
+                            {/form_field}
+
+                            {form_field form=$form field="db_charset"}
+                                <div class="form-group{if $error} has-error{/if}">
+                                    <label class="control-label" for="{$label_attr.for}">{intl l=$label d="databasesmanager"}</label>
+                                    <select id="{$label_attr.for}" class="form-control" name="{$name}">
+                                        {foreach $choices as $choice}
+                                            <option value="{$choice->value}"{if $choice->value === $value} selected{/if}>{$choice->label} ({$choice->value})</option>
+                                        {/foreach}
+                                    </select>
                                 </div>
                             {/form_field}
                         </div>

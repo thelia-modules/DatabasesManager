@@ -23,6 +23,8 @@
 
 namespace DatabasesManager\Form;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  * Class EditForm
  *
@@ -39,11 +41,15 @@ class EditForm extends BaseForm
     protected function buildForm()
     {
         $this->formBuilder
-            ->add('original_label', 'hidden', [
-                'attr' => [
-                    'id' =>  $this->getName() . '-original_label'
+            ->add(
+                'original_label',
+                'hidden',
+                [
+                    'constraints' => [
+                        new Assert\NotBlank
+                    ]
                 ]
-            ])
+            )
         ;
 
         parent::buildForm();

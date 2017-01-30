@@ -47,6 +47,9 @@
                         {intl l="TABLE_HEAD_DB_NAME" d="databasesmanager"}
                     </th>
                     <th>
+                        {intl l="TABLE_HEAD_DB_CHARSET" d="databasesmanager"}
+                    </th>
+                    <th>
                         {intl l="TABLE_HEAD_ACTION" d="databasesmanager"}
                     </th>
                 </tr>
@@ -80,6 +83,9 @@
                         </td>
                         <td>
                             {$DB_NAME}
+                        </td>
+                        <td>
+                            {$DB_CHARSET_LABEL} ({$DB_CHARSET})
                         </td>
                         <td>
                             <div class="btn-group btn-group-xs">

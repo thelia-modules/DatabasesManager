@@ -85,7 +85,8 @@ class ConfigurationController extends BaseAdminController
                 'host' => $form->getForm()->get('host')->getData(),
                 'user' => $form->getForm()->get('user')->getData(),
                 'pass' => $form->getForm()->get('pass')->getData(),
-                'db_name' => $form->getForm()->get('db_name')->getData()
+                'db_name' => $form->getForm()->get('db_name')->getData(),
+                'db_charset' => ''
             ];
 
             $configHandler->dump($databasesConfiguration, $useEnvironment);
@@ -179,7 +180,8 @@ class ConfigurationController extends BaseAdminController
                 'host' => $form->getForm()->get('host')->getData(),
                 'user' => $form->getForm()->get('user')->getData(),
                 'pass' => $form->getForm()->get('pass')->getData(),
-                'db_name' => $form->getForm()->get('db_name')->getData()
+                'db_name' => $form->getForm()->get('db_name')->getData(),
+                'db_charset' => $form->getForm()->get('db_charset')->getData()
             ];
 
             $configHandler->dump($databasesConfiguration, $useEnvironment);

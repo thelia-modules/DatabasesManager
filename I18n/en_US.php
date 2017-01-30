@@ -37,6 +37,7 @@ return [
     'TABLE_HEAD_USER' => 'User',
     'TABLE_HEAD_PASS' => 'Password',
     'TABLE_HEAD_DB_NAME' => 'Database name',
+    'TABLE_HEAD_DB_CHARSET' => 'Database charset',
     'TABLE_HEAD_ACTION' => 'Action',
 
     'ADD_BUTTON' => 'Add a configuration',
@@ -53,6 +54,8 @@ return [
     'FORM_LABEL_USER' => 'User',
     'FORM_LABEL_PASS' => 'Password',
     'FORM_LABEL_DB_NAME' => 'Database name',
+    'FORM_LABEL_DB_CHARSET' => 'Database charset',
+    'FORM_DB_CHARSET_VALUE_DEFAULT' => 'Database default charset',
 
     'MODAL_TITLE_ADD_SHARED' => 'Add a shared database configuration',
     'MODAL_TITLE_ADD_ENV' => 'Add a database configuration on environment "%env"',

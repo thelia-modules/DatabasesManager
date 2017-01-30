@@ -37,6 +37,7 @@ return [
     'TABLE_HEAD_USER' => 'Utilisateur',
     'TABLE_HEAD_PASS' => 'Mot de passe',
     'TABLE_HEAD_DB_NAME' => 'Nom de la base',
+    'TABLE_HEAD_DB_CHARSET' => 'Jeu de caractères de la base',
     'TABLE_HEAD_ACTION' => 'Action',
 
     'ADD_BUTTON' => 'Ajouter une configuration',
@@ -53,6 +54,8 @@ return [
     'FORM_LABEL_USER' => 'Utilisateur',
     'FORM_LABEL_PASS' => 'Mot de passe',
     'FORM_LABEL_DB_NAME' => 'Nom de la base',
+    'FORM_LABEL_DB_CHARSET' => 'Jeu de caractères de la base',
+    'FORM_DB_CHARSET_VALUE_DEFAULT' => 'Jeu de caractères par défaut de la base',
 
     'MODAL_TITLE_ADD_SHARED' => 'Ajouter une configuration partagée de base de données',
     'MODAL_TITLE_ADD_ENV' => 'Ajouter une configuration de base de données sur l\'environnement "%env"',

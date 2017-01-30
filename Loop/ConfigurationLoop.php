@@ -63,6 +63,10 @@ class ConfigurationLoop extends BaseLoop implements ArraySearchLoopInterface
      */
     public function parseResults(LoopResult $loopResult)
     {
+        /** @var \DatabasesManager\Handler\ConfigurationHandler $configHandler */
+        $configHandler = $this->container->get('databases.manager.config.handler');
+        $charsets = $configHandler->getCharsets();
+
         foreach ($loopResult->getResultDataCollection() as $label => $databaseConfig) {
             $loopResultRow = new LoopResultRow;
 
@@ -73,6 +77,7 @@ class ConfigurationLoop extends BaseLoop implements ArraySearchLoopInterface
                 'user' => $databaseConfig['user'],
                 'pass' => $databaseConfig['pass'],
                 'db_name' => $databaseConfig['db_name'],
+                'db_charset' => $databaseConfig['db_charset']
             ];
 
             $loopResultRow
@@ -81,6 +86,8 @@ class ConfigurationLoop extends BaseLoop implements ArraySearchLoopInterface
                 ->set('USER', $databaseConfig['user'])
                 ->set('PASS', $databaseConfig['pass'])
                 ->set('DB_NAME', $databaseConfig['db_name'])
+                ->set('DB_CHARSET', $databaseConfig['db_charset'])
+                ->set('DB_CHARSET_LABEL', $charsets[$databaseConfig['db_charset']])
                 ->set('JSON', json_encode($flatConfig))
             ;
 
