@@ -2,7 +2,7 @@
 /*************************************************************************************/
 /*                                                                                   */
 /*    DatabasesManager - A Thelia 2 databases manager module                         */
-/*    Copyright (C) 2015 Jérôme BILLIRAS                                             */
+/*    Copyright (C) 2015-2017 Jérôme BILLIRAS                                        */
 /*                                                                                   */
 /*    This file is part of DatabasesManager.                                         */
 /*                                                                                   */
