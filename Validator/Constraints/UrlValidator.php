@@ -32,7 +32,9 @@ use \Symfony\Component\Validator\Constraints\UrlValidator as BaseUrlValidator;
  */
 class UrlValidator extends BaseUrlValidator
 {
-    /** @var string Modified pattern to ignore protocol */
+    /**
+     * @var string Modified pattern to ignore protocol
+     */
     const PATTERN = '~^
             (?:(%s)://)?                            # protocol
             (([\pL\pN-]+:)?([\pL\pN-]+)@)?          # basic auth

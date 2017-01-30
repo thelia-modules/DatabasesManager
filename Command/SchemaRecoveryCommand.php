@@ -39,9 +39,6 @@ use Thelia\Command\BaseModuleGenerate;
  */
 class SchemaRecoveryCommand extends BaseModuleGenerate
 {
-    /**
-     * @inheritdoc
-     */
     public function configure()
     {
         $this
@@ -55,16 +52,6 @@ class SchemaRecoveryCommand extends BaseModuleGenerate
         ;
     }
 
-    /**
-     * Executes the command.
-     *
-     * @param \Symfony\Component\Console\Input\InputInterface  $input  An InputInterface instance
-     * @param \Symfony\Component\Console\Output\OutputInterface $output An OutputInterface instance
-     *
-     * @throws \Exception
-     *
-     * @return null
-     */
     public function execute(InputInterface $input, OutputInterface $output)
     {
         /** @var \Symfony\Component\Finder\SplFileInfo $file */

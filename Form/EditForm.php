@@ -32,14 +32,12 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class EditForm extends BaseForm
 {
-    /** @var string Form name */
     const NAME = 'databases_manager_configuration_form_edit';
 
-    /**
-     * @inheritdoc
-     */
     protected function buildForm()
     {
+        parent::buildForm();
+
         $this->formBuilder
             ->add(
                 'original_label',
@@ -51,7 +49,5 @@ class EditForm extends BaseForm
                 ]
             )
         ;
-
-        parent::buildForm();
     }
 }

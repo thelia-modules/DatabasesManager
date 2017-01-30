@@ -35,20 +35,16 @@ use Thelia\Form\BaseForm as TheliaBaseForm;
  */
 class BaseForm extends TheliaBaseForm
 {
-    /** @var string Form name */
+    /**
+     * @var string Form name
+     */
     const NAME = 'databases_manager_configuration_form';
 
-    /**
-     * @inheritdoc
-     */
     public function getName()
     {
         return static::NAME;
     }
 
-    /**
-     * @inheritdoc
-     */
     protected function buildForm()
     {
         /** @var \DatabasesManager\Handler\ConfigurationHandler $configHandler */

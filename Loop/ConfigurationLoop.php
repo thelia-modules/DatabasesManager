@@ -37,9 +37,6 @@ use Thelia\Core\Template\Loop\Argument\ArgumentCollection;
  */
 class ConfigurationLoop extends BaseLoop implements ArraySearchLoopInterface
 {
-    /**
-     * @inheritdoc
-     */
     protected function getArgDefinitions()
     {
         return new ArgumentCollection(
@@ -47,20 +44,14 @@ class ConfigurationLoop extends BaseLoop implements ArraySearchLoopInterface
         );
     }
 
-    /**
-     * @inheritdoc
-     */
     public function buildArray()
     {
         /** @var \DatabasesManager\Handler\ConfigurationHandler $configHandler */
         $configHandler = $this->container->get('databases.manager.config.handler');
 
-        return $configHandler->parse($this->getCurrentEnv());
+        return $configHandler->parse($this->getArgValue('current_env'));
     }
 
-    /**
-     * @inheritdoc
-     */
     public function parseResults(LoopResult $loopResult)
     {
         /** @var \DatabasesManager\Handler\ConfigurationHandler $configHandler */

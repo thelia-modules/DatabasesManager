@@ -30,6 +30,5 @@ namespace DatabasesManager\Form;
  */
 class AddForm extends BaseForm
 {
-    /** @var string Form name */
     const NAME = 'databases_manager_configuration_form_add';
 }

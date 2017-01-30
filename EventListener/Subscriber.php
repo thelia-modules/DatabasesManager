@@ -51,9 +51,6 @@ class Subscriber implements EventSubscriberInterface
         $this->configHandler = $configurationHandler;
     }
 
-    /**
-     * @inheritdoc
-     */
     public static function getSubscribedEvents()
     {
         return [

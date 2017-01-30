@@ -41,29 +41,36 @@ use Thelia\Command\BaseModuleGenerate;
  */
 abstract class SchemaParserCommand extends BaseModuleGenerate
 {
-    /** @var \Symfony\Component\Filesystem\Filesystem */
+    /**
+     * @var \Symfony\Component\Filesystem\Filesystem
+     */
     protected $fileSystem;
 
-    /** @var string schema.xml path */
+    /**
+     * @var string schema.xml path
+     */
     protected $schemaFilePath;
 
-    /** @var \DOMDocument schema.xml object model */
+    /**
+     * @var \DOMDocument schema.xml object model
+     */
     protected $domSchema;
 
-    /** @var bool schema.xml is splitable into multiple files with "database" node */
+    /**
+     * @var bool schema.xml is splitable into multiple files with "database" node
+     */
     protected $splitableSchema;
 
-    /** @var int Highest split index */
+    /**
+     * @var int Highest split index
+     */
     protected $maxSplitIdx = 0;
 
-    /** @var string temporary name for schema.xml file */
+    /**
+     * @var string temporary name for schema.xml file
+     */
     protected $tmpSchemaName;
 
-    /**
-     * Class constructor
-     *
-     * @param string $name
-     */
     public function __construct($name = null)
     {
         parent::__construct($name);

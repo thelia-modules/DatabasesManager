@@ -37,9 +37,6 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class GenerateSqlCommand extends SchemaParserCommand
 {
-    /**
-     * @inheritdoc
-     */
     public function configure()
     {
         $this
@@ -59,16 +56,6 @@ class GenerateSqlCommand extends SchemaParserCommand
         ;
     }
 
-    /**
-     * Executes the command.
-     *
-     * @param \Symfony\Component\Console\Input\InputInterface  $input  An InputInterface instance
-     * @param \Symfony\Component\Console\Output\OutputInterface $output An OutputInterface instance
-     *
-     * @throws \Exception
-     *
-     * @return null
-     */
     public function execute(InputInterface $input, OutputInterface $output)
     {
         $this->preExecute($input);
@@ -83,7 +70,7 @@ class GenerateSqlCommand extends SchemaParserCommand
         } catch (\Exception $exception) {
         }
 
-        $this->postExecute($input);
+        $this->postExecute();
 
         if (isset($exception)) {
             throw $exception;
