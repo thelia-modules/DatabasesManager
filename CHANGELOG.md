@@ -1,3 +1,7 @@
+#1.4.0
+- Add possibility to choose database charset  
+  Thanks to @marsender
+
 #1.3.1
 - Fix compatibility with BaseModuleInterface
 
